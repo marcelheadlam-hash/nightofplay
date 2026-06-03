@@ -5,17 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Night of Play</title>
 
-<!-- Free fallback that closely matches Ethnocentric's techy feel -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
 
 <style>
-  /* ----------------------------------------------------------
-     DROP IN YOUR LICENSED ETHNOCENTRIC FILES HERE
-     Place the .woff2 / .woff in the same folder, then this
-     @font-face takes priority over the Orbitron fallback.
-  ---------------------------------------------------------- */
+  /* Drop your licensed Ethnocentric files into /assets to override the fallback */
   @font-face {
     font-family: 'Ethnocentric';
     src: url('assets/ethnocentric.woff2') format('woff2'),
@@ -33,47 +28,36 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html, body { height: 100%; }
 
   body {
     background: var(--bg);
     color: var(--fg);
     font-family: var(--display);
-    min-height: 100vh;
-    min-height: 100dvh;
+    min-height: 100vh; min-height: 100dvh;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
   }
 
   .page {
     position: relative;
-    min-height: 100vh;
-    min-height: 100dvh;
-    display: flex;
-    flex-direction: column;
+    min-height: 100vh; min-height: 100dvh;
+    display: flex; flex-direction: column;
     padding: var(--gap);
     z-index: 1;
   }
 
   /* ---------- Background Video ---------- */
   .bg-video {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
+    position: fixed; inset: 0;
+    width: 100%; height: 100%;
     object-fit: cover;
-    z-index: -2;
-    pointer-events: none;
+    z-index: -2; pointer-events: none;
   }
-  .bg-video::-webkit-media-controls { display: none !important; }
-  /* dark scrim so foreground text/logo stays legible */
   .bg-scrim {
-    position: fixed;
-    inset: 0;
+    position: fixed; inset: 0;
     background: rgba(0,0,0,.45);
-    z-index: -1;
-    pointer-events: none;
+    z-index: -1; pointer-events: none;
   }
 
   /* ---------- Sound Toggle ---------- */
@@ -82,141 +66,123 @@
     right: clamp(18px, 3vw, 36px);
     bottom: clamp(18px, 3vw, 36px);
     z-index: 5;
-    width: clamp(46px, 4vw, 56px);
-    height: clamp(46px, 4vw, 56px);
-    border: 2px solid var(--fg);
-    border-radius: 50%;
-    background: rgba(0,0,0,.35);
-    backdrop-filter: blur(4px);
-    color: var(--fg);
-    display: grid;
-    place-items: center;
-    cursor: pointer;
+    width: clamp(46px, 4vw, 56px); height: clamp(46px, 4vw, 56px);
+    border: 2px solid var(--fg); border-radius: 50%;
+    background: rgba(0,0,0,.35); backdrop-filter: blur(4px);
+    color: var(--fg); display: grid; place-items: center; cursor: pointer;
     transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
   }
-  .sound-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--glow);
-    background: rgba(0,0,0,.55);
-  }
+  .sound-btn:hover { transform: translateY(-3px); box-shadow: var(--glow); background: rgba(0,0,0,.55); }
   .sound-btn svg { width: 52%; height: 52%; }
   .sound-btn .icon-unmuted { display: none; }
   .sound-btn.is-unmuted .icon-muted { display: none; }
   .sound-btn.is-unmuted .icon-unmuted { display: block; }
 
-  /* ---------- Header ---------- */
-  header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-  }
-
-  /* ---------- Neon Logo ---------- */
-  .logo {
-    display: inline-block;
-    line-height: 0;
-    cursor: pointer;
-    transition: transform .25s ease, filter .25s ease;
-  }
-  .logo img {
-    display: block;
-    width: clamp(150px, 16vw, 240px);
-    height: auto;
-    filter: drop-shadow(0 0 12px rgba(120,90,255,.35));
-  }
+  /* ---------- Header / Logo ---------- */
+  header { display: flex; align-items: flex-start; justify-content: center; }
+  .logo { display: inline-block; line-height: 0; cursor: pointer; transition: transform .25s ease, filter .25s ease; }
+  .logo img { display: block; width: clamp(160px, 17vw, 260px); height: auto; filter: drop-shadow(0 0 12px rgba(120,90,255,.35)); }
   .logo:hover { transform: translateY(-2px) scale(1.02); }
   .logo:hover img { filter: drop-shadow(0 0 18px rgba(150,80,255,.6)); }
 
-  /* ---------- Hamburger ---------- */
-  .menu-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
-    padding: 6px;
-  }
-  .menu-btn span {
-    display: block;
-    width: clamp(40px, 4vw, 58px);
-    height: clamp(8px, .8vw, 11px);
-    background: var(--fg);
-    border-radius: 4px;
-    transition: transform .3s ease, opacity .3s ease;
-  }
-  .menu-btn:hover span:first-child { transform: translateX(-4px); }
-  .menu-btn:hover span:last-child  { transform: translateX(4px); }
-
   /* ---------- Center Nav ---------- */
-  .hero {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: .12em;
+  .hero { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .12em; }
+  .hero-link {
+    font-family: var(--display);
+    background: none; border: none; cursor: pointer;
+    color: var(--fg); font-weight: 700; letter-spacing: .02em;
+    font-size: clamp(48px, 9vw, 120px); line-height: 1.05; text-transform: uppercase;
+    transition: text-shadow .3s ease, transform .3s ease;
   }
-  .hero a {
-    color: var(--fg);
-    text-decoration: none;
-    font-weight: 700;
-    letter-spacing: .02em;
-    font-size: clamp(48px, 9vw, 120px);
-    line-height: 1.05;
-    text-transform: uppercase;
-    transition: text-shadow .3s ease, transform .3s ease, opacity .3s ease;
-  }
-  .hero a:hover {
-    text-shadow: var(--glow);
-    transform: scale(1.03);
-  }
+  .hero-link:hover { text-shadow: var(--glow); transform: scale(1.03); }
 
   /* ---------- Footer ---------- */
-  footer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: clamp(20px, 3vw, 36px);
-  }
-  .socials {
-    display: flex;
-    gap: 18px;
-  }
+  footer { display: flex; align-items: center; justify-content: center; gap: clamp(20px, 3vw, 36px); flex-wrap: wrap; }
+  .socials { display: flex; gap: 18px; }
   .socials a {
-    width: clamp(44px, 4vw, 58px);
-    height: clamp(44px, 4vw, 58px);
-    border: 2px solid var(--fg);
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    color: var(--fg);
-    transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+    width: clamp(44px, 4vw, 58px); height: clamp(44px, 4vw, 58px);
+    border: 2px solid var(--fg); border-radius: 50%;
+    display: grid; place-items: center; color: var(--fg);
+    transition: transform .25s ease, box-shadow .25s ease;
   }
-  .socials a:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--glow);
-  }
+  .socials a:hover { transform: translateY(-3px); box-shadow: var(--glow); }
   .socials svg { width: 52%; height: 52%; }
 
-  .contact {
-    color: var(--fg);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: text-shadow .3s ease, transform .25s ease, filter .25s ease;
+  /* ---------- Overlay Panels ---------- */
+  .panel {
+    position: fixed; inset: 0; z-index: 20;
+    background: rgba(0,0,0,.88); backdrop-filter: blur(10px);
+    padding: clamp(24px, 5vw, 72px);
+    display: flex; flex-direction: column;
+    opacity: 0; visibility: hidden; transform: translateY(20px);
+    transition: opacity .35s ease, transform .35s ease, visibility .35s;
+    overflow-y: auto;
   }
-  .contact svg {
-    width: clamp(40px, 4.5vw, 64px);
-    height: auto;
+  .panel.open { opacity: 1; visibility: visible; transform: translateY(0); }
+  .panel-head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: clamp(24px, 4vw, 48px); flex-shrink: 0;
   }
-  .contact:hover {
-    transform: translateY(-3px);
-    filter: drop-shadow(var(--glow));
+  .panel-head h2 {
+    font-weight: 900; text-transform: uppercase; letter-spacing: .03em;
+    font-size: clamp(34px, 6vw, 72px);
   }
+  .panel-close {
+    background: none; border: 2px solid var(--fg); border-radius: 50%;
+    width: clamp(46px, 4vw, 58px); height: clamp(46px, 4vw, 58px);
+    color: var(--fg); cursor: pointer; flex-shrink: 0;
+    display: grid; place-items: center; transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .panel-close:hover { transform: rotate(90deg); box-shadow: var(--glow); }
+  .panel-close svg { width: 46%; height: 46%; }
+
+  /* Playlist grid */
+  .playlist-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 22px; }
+  .playlist-grid iframe { width: 100%; border: 0; border-radius: 12px; }
+
+  /* Events list */
+  .events-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+  .event-card {
+    display: block; text-decoration: none; color: var(--fg);
+    border: 2px solid rgba(255,255,255,.5); border-radius: 16px;
+    padding: 26px; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    background: rgba(255,255,255,.03);
+  }
+  .event-card:hover { transform: translateY(-4px); border-color: var(--fg); box-shadow: var(--glow); }
+  .event-card .ev-date { font-size: 14px; letter-spacing: .12em; text-transform: uppercase; opacity: .75; }
+  .event-card .ev-title { font-size: clamp(22px, 2.4vw, 30px); font-weight: 700; margin: 10px 0 6px; text-transform: uppercase; }
+  .event-card .ev-venue { font-size: 15px; opacity: .8; }
+  .event-card .ev-cta { display: inline-block; margin-top: 18px; font-size: 14px; letter-spacing: .1em; text-transform: uppercase; border-bottom: 2px solid var(--fg); padding-bottom: 3px; }
+
+  /* Gallery mosaic */
+  .mosaic {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-auto-rows: 180px;
+    grid-auto-flow: dense;
+    gap: 12px;
+  }
+  .tile { position: relative; overflow: hidden; border-radius: 12px; background: #111; }
+  .tile img, .tile video { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+  .tile:hover img, .tile:hover video { transform: scale(1.06); }
+  .tile.wide { grid-column: span 2; }
+  .tile.tall { grid-row: span 2; }
+  .tile.big  { grid-column: span 2; grid-row: span 2; }
+  .tile-hidden { display: none; }
+  #gallery-more-wrap { text-align: center; }
+  .gallery-more {
+    margin: 26px auto 4px; padding: 13px 34px; cursor: pointer;
+    background: transparent; color: var(--gold, #C9A84C);
+    border: 1px solid var(--gold, #C9A84C); border-radius: 999px;
+    font: inherit; font-size: 14px; letter-spacing: .14em; text-transform: uppercase;
+    transition: background .25s ease, color .25s ease;
+  }
+  .gallery-more:hover { background: var(--gold, #C9A84C); color: #0D1B2A; }
+
+  .empty-note { opacity: .6; font-family: 'Orbitron', sans-serif; font-size: 15px; line-height: 1.6; max-width: 640px; }
 
   @media (max-width: 600px) {
-    footer { flex-wrap: wrap; }
+    .mosaic { grid-auto-rows: 140px; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
   }
 </style>
 </head>
@@ -228,7 +194,6 @@
   <div class="bg-scrim"></div>
 
   <div class="page">
-
     <header>
       <a class="logo" href="#" aria-label="Night of Play home">
         <img src="assets/nop-logo-clear.png" alt="Night of Play">
@@ -236,66 +201,230 @@
     </header>
 
     <nav class="hero">
-      <a href="#events">Events</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#playlist">Playlist</a>
+      <button class="hero-link" data-panel="events">Events</button>
+      <button class="hero-link" data-panel="gallery">Gallery</button>
+      <button class="hero-link" data-panel="playlist">Playlist</button>
     </nav>
 
     <footer>
       <div class="socials">
         <a href="https://www.tiktok.com/@wearenightofplay" target="_blank" rel="noopener" aria-label="TikTok">
-          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.5 2h-3v13.2a2.6 2.6 0 1 1-2.05-2.54V9.6a5.8 5.8 0 1 0 5.05 5.75V8.9a6.4 6.4 0 0 0 3.75 1.2V7.05a3.6 3.6 0 0 1-3.7-3.45V2Z"/>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16.5 2h-3v13.2a2.6 2.6 0 1 1-2.05-2.54V9.6a5.8 5.8 0 1 0 5.05 5.75V8.9a6.4 6.4 0 0 0 3.75 1.2V7.05a3.6 3.6 0 0 1-3.7-3.45V2Z"/></svg>
         </a>
         <a href="https://www.instagram.com/nightofplay" target="_blank" rel="noopener" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg">
-            <rect x="3" y="3" width="18" height="18" rx="5"/>
-            <circle cx="12" cy="12" r="4.2"/>
-            <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>
         </a>
         <a href="mailto:info@nightofplay.com" aria-label="Email us" title="Email us">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-            <rect x="3" y="5" width="18" height="14" rx="2.5"/>
-            <path d="m4 7 8 5.5L20 7"/>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 5.5L20 7"/></svg>
         </a>
       </div>
     </footer>
-
   </div>
 
+  <!-- ============ OVERLAY PANELS ============ -->
+  <section class="panel" id="panel-playlist" aria-hidden="true">
+    <div class="panel-head"><h2>Playlist</h2><button class="panel-close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="playlist-grid" id="playlist-grid"></div>
+  </section>
+
+  <section class="panel" id="panel-events" aria-hidden="true">
+    <div class="panel-head"><h2>Events</h2><button class="panel-close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="events-list" id="events-list"></div>
+  </section>
+
+  <section class="panel" id="panel-gallery" aria-hidden="true">
+    <div class="panel-head"><h2>Gallery</h2><button class="panel-close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="mosaic" id="mosaic"></div>
+    <div id="gallery-more-wrap"></div>
+  </section>
+
   <button class="sound-btn" id="soundBtn" aria-label="Unmute sound" title="Unmute">
-    <!-- muted icon -->
-    <svg class="icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-      <path d="M4 9v6h4l5 4V5L8 9H4Z"/>
-      <line x1="17" y1="9" x2="22" y2="14"/>
-      <line x1="22" y1="9" x2="17" y2="14"/>
-    </svg>
-    <!-- unmuted icon -->
-    <svg class="icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-      <path d="M4 9v6h4l5 4V5L8 9H4Z"/>
-      <path d="M16.5 8.5a4 4 0 0 1 0 7"/>
-      <path d="M19 6a7.5 7.5 0 0 1 0 12"/>
-    </svg>
+    <svg class="icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><line x1="17" y1="9" x2="22" y2="14"/><line x1="22" y1="9" x2="17" y2="14"/></svg>
+    <svg class="icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path d="M16.5 8.5a4 4 0 0 1 0 7"/><path d="M19 6a7.5 7.5 0 0 1 0 12"/></svg>
   </button>
 
-  <script>
-    (function () {
-      var video = document.querySelector('.bg-video');
-      var btn = document.getElementById('soundBtn');
+<script>
+/* =====================================================================
+   ⬇⬇⬇  EDIT YOUR CONTENT HERE — this is the only part you need to touch
+   ===================================================================== */
 
-      btn.addEventListener('click', function () {
-        video.muted = !video.muted;
-        btn.classList.toggle('is-unmuted', !video.muted);
-        btn.setAttribute('aria-label', video.muted ? 'Unmute sound' : 'Mute sound');
-        btn.setAttribute('title', video.muted ? 'Unmute' : 'Mute');
-        // Some browsers pause on first interaction; make sure it keeps playing.
-        if (video.paused) { video.play().catch(function () {}); }
+// 1) PLAYLISTS — paste the normal Spotify share link for each playlist.
+//    (In Spotify: ... → Share → Copy link to playlist)
+const PLAYLISTS = [
+  { url: "https://open.spotify.com/playlist/5gcFMmgPBzG1PVUISmmIqP" },  // R&B
+  { url: "https://open.spotify.com/playlist/7u3965CBX9qBQaEZ8FCw0M" },  // Old School Hip-Hop
+  { url: "https://open.spotify.com/playlist/4ADOQoov0ikPZSku4nYDmL" },  // Afrobeats
+];
+
+// 2) EVENTS — one block per event. Leave a field as "" to hide it.
+const EVENTS = [
+  { date: "Thu 18 June · 6:30–10:00pm", title: "Afro Social", venue: "12 Balham Station Rd, London SW12 9SG", url: "https://tickxts.com/e/oKbETxXS" },
+];
+
+// 3) GALLERY — photos and videos. Put the files in /assets/gallery/.
+//    type: "image" or "video".  size: "" | "wide" | "tall" | "big"  (controls the mosaic)
+const GALLERY = [
+  { type: "image", src: "assets/gallery/g37.jpg", size: "big" },
+  { type: "image", src: "assets/gallery/g01_banner.jpg", size: "wide" },
+  { type: "image", src: "assets/gallery/g50.jpg", size: "tall" },
+  { type: "image", src: "assets/gallery/g07.jpg", size: "tall" },
+  { type: "video", src: "assets/gallery/v06.mp4", size: "tall" },
+  { type: "image", src: "assets/gallery/g42.jpg", size: "tall" },
+  { type: "image", src: "assets/gallery/g45.jpg", size: "" },
+  { type: "image", src: "assets/gallery/g20.jpg", size: "wide" },
+  { type: "image", src: "assets/gallery/g17.jpg", size: "tall" },
+  { type: "image", src: "assets/gallery/g56.jpg", size: "tall" },
+  { type: "image", src: "assets/gallery/g46.jpg", size: "" },
+  { type: "video", src: "assets/gallery/v01.mp4", size: "wide" },
+  { type: "image", src: "assets/gallery/g33.jpg", size: "wide" },
+  { type: "image", src: "assets/gallery/g13.jpg", size: "tall" },
+  { type: "image", src: "assets/gallery/g38.jpg", size: "" },
+  { type: "image", src: "assets/gallery/g54.jpg", size: "wide" },
+  { type: "image", src: "assets/gallery/g02.jpg", size: "wide" },
+  { type: "image", src: "assets/gallery/g03.jpg", size: "" },
+  { type: "image", src: "assets/gallery/g04.jpg", size: "tall" },
+  { type: "image", src: "assets/gallery/g05.jpg", size: "" },
+  { type: "image", src: "assets/gallery/g06.jpg", size: "big" },
+  { type: "image", src: "assets/gallery/g08.jpg", size: "" },
+  { type: "video", src: "assets/gallery/v02.mp4", size: "wide" },
+  { type: "image", src: "assets/gallery/g09.jpg", size: "tall" },
+  { type: "image", src: "assets/gallery/g10.jpg", size: "" },
+  { type: "image", src: "assets/gallery/g11.jpg", size: "tall" },
+  { type: "image", src: "assets/gallery/g12.jpg", size: "" },
+  { type: "image", src: "assets/gallery/g14.jpg", size: "tall" },
+  { type: "image", src: "assets/gallery/g15.jpg", size: "" },
+  { type: "video", src: "assets/gallery/v03.mp4", size: "wide" },
+  { type: "image", src: "assets/gallery/g16.jpg", size: "wide" },
+  { type: "image", src: "assets/gallery/g18.jpg", size: "big" },
+  { type: "image", src: "assets/gallery/g19.jpg", size: "tall" },
+  { type: "image", src: "assets/gallery/g21.jpg", size: "" },
+  { type: "image", src: "assets/gallery/g22.jpg", size: "tall" },
+  { type: "image", src: "assets/gallery/g23.jpg", size: "" },
+  { type: "video", src: "assets/gallery/v04.mp4", size: "wide" },
+  { type: "image", src: "assets/gallery/g24.jpg", size: "tall" },
+  { type: "image", src: "assets/gallery/g25.jpg", size: "" },
+  { type: "image", src: "assets/gallery/g26.jpg", size: "tall" },
+  { type: "image", src: "assets/gallery/g27.jpg", size: "" },
+  { type: "image", src: "assets/gallery/g28.jpg", size: "big" },
+  { type: "image", src: "assets/gallery/g29.jpg", size: "" },
+  { type: "video", src: "assets/gallery/v05.mp4", size: "tall" },
+  { type: "image", src: "assets/gallery/g30.jpg", size: "tall" },
+  { type: "image", src: "assets/gallery/g31.jpg", size: "" },
+  { type: "image", src: "assets/gallery/g32.jpg", size: "wide" },
+  { type: "image", src: "assets/gallery/g34.jpg", size: "" },
+  { type: "image", src: "assets/gallery/g35.jpg", size: "wide" },
+  { type: "image", src: "assets/gallery/g36.jpg", size: "" },
+  { type: "image", src: "assets/gallery/g39.jpg", size: "tall" },
+  { type: "image", src: "assets/gallery/g40.jpg", size: "big" },
+  { type: "image", src: "assets/gallery/g41.jpg", size: "wide" },
+  { type: "image", src: "assets/gallery/g43.jpg", size: "" },
+  { type: "image", src: "assets/gallery/g44.jpg", size: "wide" },
+  { type: "image", src: "assets/gallery/g47.jpg", size: "" },
+  { type: "image", src: "assets/gallery/g48.jpg", size: "tall" },
+  { type: "image", src: "assets/gallery/g49.jpg", size: "" },
+  { type: "image", src: "assets/gallery/g51.jpg", size: "tall" },
+  { type: "image", src: "assets/gallery/g52.jpg", size: "" },
+  { type: "image", src: "assets/gallery/g53.jpg", size: "big" },
+  { type: "image", src: "assets/gallery/g55.jpg", size: "" },
+  { type: "image", src: "assets/gallery/g_bar.jpg", size: "wide" },
+];
+
+/* =====================================================================
+   ⬆⬆⬆  STOP EDITING HERE — layout code below
+   ===================================================================== */
+
+function spotifyEmbed(url) {
+  // turn open.spotify.com/playlist/ID  ->  open.spotify.com/embed/playlist/ID
+  const id = (url.split("/playlist/")[1] || "").split("?")[0];
+  return "https://open.spotify.com/embed/playlist/" + id + "?utm_source=generator&theme=0";
+}
+
+function renderPlaylists() {
+  const grid = document.getElementById("playlist-grid");
+  if (!PLAYLISTS.length) { grid.innerHTML = note("No playlists added yet."); return; }
+  grid.innerHTML = PLAYLISTS.map(p =>
+    '<iframe loading="lazy" height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" src="' + spotifyEmbed(p.url) + '"></iframe>'
+  ).join("");
+}
+
+function renderEvents() {
+  const wrap = document.getElementById("events-list");
+  if (!EVENTS.length) { wrap.innerHTML = note("No events added yet."); return; }
+  wrap.innerHTML = EVENTS.map(e =>
+    '<a class="event-card" href="' + e.url + '"' + (e.url !== "#" ? ' target="_blank" rel="noopener"' : '') + '>' +
+      (e.date  ? '<div class="ev-date">'  + e.date  + '</div>' : '') +
+      '<div class="ev-title">' + e.title + '</div>' +
+      (e.venue ? '<div class="ev-venue">' + e.venue + '</div>' : '') +
+      '<span class="ev-cta">Details &amp; tickets</span>' +
+    '</a>'
+  ).join("");
+}
+
+const GALLERY_INITIAL = 16; // tiles shown before "Load more"
+function renderGallery() {
+  const m = document.getElementById("mosaic");
+  if (!GALLERY.length) { m.innerHTML = note("Photos and videos coming soon. Add files to /assets/gallery/ and list them in the GALLERY array."); return; }
+  m.innerHTML = GALLERY.map((g, i) => {
+    const cls = "tile" + (g.size ? " " + g.size : "") + (i >= GALLERY_INITIAL ? " tile-hidden" : "");
+    if (g.type === "video") {
+      var poster = g.src.replace(/\.mp4$/, ".jpg");
+      return '<div class="' + cls + '"><video src="' + g.src + '" poster="' + poster + '" ' + (i < GALLERY_INITIAL ? 'autoplay ' : '') + 'muted loop playsinline preload="metadata"></video></div>';
+    }
+    return '<div class="' + cls + '"><img src="' + g.src + '" alt="" loading="lazy"></div>';
+  }).join("");
+
+  const hidden = GALLERY.length - GALLERY_INITIAL;
+  if (hidden > 0) {
+    const wrap = document.getElementById("gallery-more-wrap");
+    if (wrap) {
+      wrap.innerHTML = '<button id="gallery-more-btn" class="gallery-more">Load more (' + hidden + ')</button>';
+      document.getElementById("gallery-more-btn").addEventListener("click", function () {
+        m.querySelectorAll(".tile-hidden").forEach(t => {
+          t.classList.remove("tile-hidden");
+          const v = t.querySelector("video"); if (v) { v.autoplay = true; v.play().catch(()=>{}); }
+        });
+        wrap.innerHTML = "";
       });
-    })();
-  </script>
+    }
+  }
+}
 
+function note(text) { return '<p class="empty-note">' + text + '</p>'; }
+
+/* open / close panels */
+const panels = { playlist: "panel-playlist", events: "panel-events", gallery: "panel-gallery" };
+function openPanel(key) {
+  const p = document.getElementById(panels[key]);
+  if (!p) return;
+  p.classList.add("open"); p.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+}
+function closePanels() {
+  document.querySelectorAll(".panel.open").forEach(p => { p.classList.remove("open"); p.setAttribute("aria-hidden", "true"); });
+  document.body.style.overflow = "";
+}
+document.querySelectorAll(".hero-link").forEach(btn =>
+  btn.addEventListener("click", () => openPanel(btn.dataset.panel))
+);
+document.querySelectorAll(".panel-close").forEach(btn => btn.addEventListener("click", closePanels));
+document.querySelectorAll(".panel").forEach(p =>
+  p.addEventListener("click", e => { if (e.target === p) closePanels(); })
+);
+document.addEventListener("keydown", e => { if (e.key === "Escape") closePanels(); });
+
+renderPlaylists(); renderEvents(); renderGallery();
+
+/* sound toggle */
+(function () {
+  const video = document.querySelector('.bg-video');
+  const btn = document.getElementById('soundBtn');
+  btn.addEventListener('click', function () {
+    video.muted = !video.muted;
+    btn.classList.toggle('is-unmuted', !video.muted);
+    btn.setAttribute('aria-label', video.muted ? 'Unmute sound' : 'Mute sound');
+    if (video.paused) { video.play().catch(function () {}); }
+  });
+})();
+</script>
 </body>
 </html>
