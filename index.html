@@ -193,6 +193,10 @@
   .sound-btn.is-unmuted .icon-muted { display: none; }
   .sound-btn.is-unmuted .icon-unmuted { display: block; }
   @media (max-width: 600px) { .home { padding-bottom: 110px; } }
+  /* Idle mode: after 3s with no activity the home screen clears so the video plays on its own. A tap or click brings it back. */
+  .brand, nav.menu, .foot, .scrim { transition: opacity .7s ease, visibility .7s ease; }
+  body.idle .brand, body.idle nav.menu, body.idle .foot { opacity: 0; visibility: hidden; pointer-events: none; }
+  body.idle .scrim { opacity: .3; }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 </head>
@@ -522,6 +526,36 @@ document.getElementById("reveal").addEventListener("click", function () {
   document.getElementById("answer").hidden = false; this.hidden = true;
 });
 document.getElementById("yr").textContent = new Date().getFullYear();
+
+/* idle mode: clear the home screen after 3s of inactivity; a tap/click/key brings it back */
+(function () {
+  var IDLE_MS = 3000, timer = null, swallow = false, body = document.body;
+  function panelOpen() { return !!panels[location.hash.slice(1)]; }
+  function isIdle() { return body.classList.contains("idle"); }
+  function arm() {
+    clearTimeout(timer);
+    timer = setTimeout(function () { if (!panelOpen()) body.classList.add("idle"); }, IDLE_MS);
+  }
+  function wake() { body.classList.remove("idle"); arm(); }
+  // A tap or click wakes the screen. The first tap only wakes it, so it can't hit a link that was invisible.
+  document.addEventListener("pointerdown", function (e) {
+    if (e.target.closest && e.target.closest("#soundBtn")) { if (!isIdle()) arm(); return; }
+    if (isIdle()) swallow = true;
+    wake();
+  }, true);
+  document.addEventListener("click", function (e) {
+    if (swallow) { swallow = false; e.preventDefault(); e.stopPropagation(); }
+  }, true);
+  document.addEventListener("keydown", function () { wake(); }, true);
+  // Moving the mouse or scrolling counts as activity while the screen is showing.
+  ["mousemove", "wheel", "touchmove", "scroll"].forEach(function (ev) {
+    document.addEventListener(ev, function () { if (!isIdle()) arm(); }, { passive: true });
+  });
+  window.addEventListener("hashchange", function () {
+    if (panelOpen()) { clearTimeout(timer); body.classList.remove("idle"); } else arm();
+  });
+  if (!panelOpen()) arm();
+})();
 
 /* sound toggle */
 (function () {
