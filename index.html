@@ -547,8 +547,12 @@ document.getElementById("yr").textContent = new Date().getFullYear();
     if (swallow) { swallow = false; e.preventDefault(); e.stopPropagation(); }
   }, true);
   document.addEventListener("keydown", function () { wake(); }, true);
-  // Moving the mouse or scrolling counts as activity while the screen is showing.
-  ["mousemove", "wheel", "touchmove", "scroll"].forEach(function (ev) {
+  // On desktop, moving the mouse brings the screen back (or keeps it showing).
+  document.addEventListener("pointermove", function (e) {
+    if (e.pointerType === "mouse") { if (isIdle()) wake(); else arm(); }
+  }, { passive: true });
+  // Scrolling counts as activity while the screen is showing.
+  ["wheel", "touchmove", "scroll"].forEach(function (ev) {
     document.addEventListener(ev, function () { if (!isIdle()) arm(); }, { passive: true });
   });
   window.addEventListener("hashchange", function () {
