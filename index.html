@@ -199,6 +199,12 @@
   .app-pill { font-family: var(--display); font-weight: 700; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--pink); border: 1px solid var(--pink); border-radius: 999px; padding: 8px 14px; }
   .app-name { font-family: var(--display); font-weight: 900; font-size: clamp(24px, 3.4vw, 42px); line-height: 1.15; text-transform: uppercase; text-wrap: balance; }
   .app-sub { font-size: clamp(17px, 1.6vw, 19px); line-height: 1.6; color: var(--muted); max-width: 56ch; }
+  .perks { list-style: none; justify-self: stretch; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr)); gap: 20px 24px; margin-block: 10px 4px; }
+  .perks li { display: grid; gap: 6px; align-content: start; min-width: 0; padding-top: 12px; border-top: 2px solid var(--line); }
+  .perks li:nth-child(4n+1) { border-top-color: var(--red); } .perks li:nth-child(4n+2) { border-top-color: var(--blue); }
+  .perks li:nth-child(4n+3) { border-top-color: var(--green); } .perks li:nth-child(4n+4) { border-top-color: var(--yellow); }
+  .perks b { font-family: var(--display); font-weight: 700; font-size: 15px; line-height: 1.3; text-transform: uppercase; letter-spacing: .03em; }
+  .perks span { font-size: 15px; line-height: 1.55; color: var(--muted); }
   .app-soon { font-family: var(--display); font-weight: 700; font-size: 14px; letter-spacing: .16em; text-transform: uppercase; }
   .hero-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
   .play-btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; line-height: 1; background: rgba(0,0,0,.35); backdrop-filter: blur(4px); }
@@ -312,6 +318,15 @@
         <span class="app-pill">App in development</span>
         <p class="app-name">The Night of Play app</p>
         <p class="app-sub">Play our games on the night, straight from your phone. Every round, every vote, every answer, from wherever you're standing in the room.</p>
+        <ul class="perks">
+          <li><b>First access to tickets</b><span>The earliest releases are the cheapest. App members get them first.</span></li>
+          <li><b>Discount codes</b><span>Member-only codes for upcoming nights.</span></li>
+          <li><b>The community</b><span>The Night of Play community lives here.</span></li>
+          <li><b>Stay connected with your team</b><span>Keep the people you played with, long after the night ends.</span></li>
+          <li><b>Your photos from the night</b><span>Find yourself in the shots the next day.</span></li>
+          <li><b>Live scores</b><span>Follow your team up the leaderboard as it happens.</span></li>
+          <li><b>Rewards for coming back</b><span>Badges, stats and rewards that build every night you play.</span></li>
+        </ul>
         <p class="app-soon">Coming soon.</p>
       </div>
     </div>
