@@ -193,6 +193,32 @@
   .sound-btn.is-unmuted .icon-muted { display: none; }
   .sound-btn.is-unmuted .icon-unmuted { display: block; }
   @media (max-width: 600px) { .home { padding-bottom: 110px; } }
+  /* Private Hire */
+  .formats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 20px; }
+  .format { display: grid; gap: 14px; align-content: start; min-width: 0; padding: clamp(22px, 3vw, 32px); border-radius: 18px; border: 2px solid rgba(255,255,255,.45); background: rgba(255,255,255,.03); }
+  .format .k { font-family: var(--display); font-weight: 700; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--pink); }
+  .format h3 { font-family: var(--display); font-weight: 900; font-size: clamp(22px, 2.6vw, 32px); line-height: 1.15; text-transform: uppercase; }
+  .format p { font-size: 16px; line-height: 1.6; color: var(--muted); }
+  .format ul { list-style: none; display: grid; gap: 8px; padding-top: 6px; }
+  .format li { font-size: 15px; line-height: 1.5; color: var(--fg); padding-left: 22px; position: relative; }
+  .format li::before { content: ""; position: absolute; left: 0; top: .6em; width: 10px; height: 2px; background: var(--pink); }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+  .stats div { border-top: 2px solid var(--fg); padding-top: 12px; display: grid; gap: 4px; }
+  .stats b { font-family: var(--display); font-weight: 900; font-size: clamp(26px, 3.4vw, 40px); line-height: 1.1; }
+  .stats span { font-size: 14px; line-height: 1.5; color: var(--muted); }
+  .enquiry { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 20px; border: 2px solid var(--fg); border-radius: 18px; padding: clamp(22px, 3vw, 34px); background: rgba(255,255,255,.03); }
+  .enquiry label { display: grid; gap: 8px; font-size: 14px; font-weight: 600; letter-spacing: .02em; min-width: 0; }
+  .enquiry label.full { grid-column: 1 / -1; }
+  .enquiry input, .enquiry select, .enquiry textarea { width: 100%; font: inherit; font-weight: 400; font-size: 16px; color: var(--fg); background: rgba(0,0,0,.35); border: 1px solid rgba(255,255,255,.35); border-radius: 10px; padding: 12px 14px; }
+  .enquiry select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, #fff 50%), linear-gradient(135deg, #fff 50%, transparent 50%); background-position: calc(100% - 20px) 50%, calc(100% - 14px) 50%; background-size: 6px 6px; background-repeat: no-repeat; padding-right: 36px; }
+  .enquiry select option { color: #000; }
+  .enquiry textarea { min-height: 120px; resize: vertical; }
+  .enquiry input:focus, .enquiry select:focus, .enquiry textarea:focus { outline: none; border-color: var(--pink); box-shadow: 0 0 0 3px rgba(255,43,214,.25); }
+  .enquiry .send { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; }
+  .enquiry .send span { font-size: 14px; color: var(--muted); }
+  .enquiry .msg { grid-column: 1 / -1; font-size: 16px; line-height: 1.5; }
+  .enquiry .msg.err { color: var(--red); }
+  @media (max-width: 640px) { .enquiry { grid-template-columns: 1fr; } }
   /* App in development */
   .app-card { display: grid; gap: 14px; justify-items: start; padding: clamp(24px, 3.4vw, 40px); border-radius: 18px; border: 2px solid var(--fg);
     background: radial-gradient(ellipse 80% 120% at 100% 0%, rgba(255,43,214,.16), rgba(77,92,255,.08) 55%, rgba(255,255,255,.02)); }
@@ -238,6 +264,7 @@
   <nav class="menu" aria-label="Main">
     <a href="#story">Our Story</a>
     <a href="#events">Events</a>
+    <a href="#private-hire">Private Hire</a>
     <a href="#gallery">Gallery</a>
     <a href="#playlist">Playlist</a>
   </nav>
@@ -348,6 +375,115 @@
 </section>
 
 <!-- EVENTS -->
+<!-- PRIVATE HIRE (formerly On The Buzzer) -->
+<section class="panel" id="p-hire" hidden aria-label="Private Hire">
+  <div class="panel-head"><h2>Private Hire</h2><a class="close" href="#" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></a></div>
+  <div class="story">
+    <div class="section" style="gap:22px">
+      <p class="why">Nobody bonds over a <em>buffet.</em></p>
+      <div class="prose">
+        <p>Most work socials go the same way: a room, a few drinks, and everyone drifting back to the people they already sit next to. Give people something to compete over and that changes in minutes. <strong>Competition is the one language everyone in the building speaks.</strong></p>
+        <p>We bring the Night of Play show to your team: a professional host, all the kit and games everyone already knows how to play. <strong>In person, online or hybrid, for 20 to 300 guests.</strong></p>
+      </div>
+      <div class="clients" aria-label="Organisations we've hosted for"><span>The Crown Estate</span><span>NHS</span><span>MYO Piccadilly</span><span>University of Essex</span><span>Arkhiventeros</span></div>
+      <span class="btns"><button class="btn" type="button" data-scroll="hire-enquire">Get a proposal</button></span>
+    </div>
+
+    <div class="section">
+      <div class="stats">
+        <div><b>20+</b><span>organisations hosted</span></div>
+        <div><b>Up to 300</b><span>guests per show</span></div>
+        <div><b>1 week</b><span>fastest turnaround</span></div>
+        <div><b>72 hours</b><span>to reply to your enquiry</span></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <p class="label">Two ways to play</p>
+      <div class="formats">
+        <div class="format">
+          <span class="k">90 minutes · 3 rounds</span>
+          <h3>The Gameshow</h3>
+          <p>A live, hosted show built on the TV formats everyone grew up with. Simple rules, no awkward warm-up, and within minutes the colleague who “doesn’t do this sort of thing” is shouting answers with everyone else. Our own rounds, inspired by:</p>
+          <ul>
+            <li><b>Family Fortunes:</b> guess the most popular answers. No specialists, so the newest starter has the same shot as the MD.</li>
+            <li><b>The Cube:</b> quick challenges against the clock. It’s about nerve, not knowledge.</li>
+            <li><b>Countdown:</b> teams race to build the longest word.</li>
+          </ul>
+        </div>
+        <div class="format">
+          <span class="k">Your content, made competitive</span>
+          <h3>The Knowledge Show</h3>
+          <p>Send us the deck you were going to present. We turn it into rounds, so your people compete over the message instead of sitting through it, and they walk out remembering it. Built for the sessions people usually dread:</p>
+          <ul>
+            <li>All-hands and town halls</li>
+            <li>Onboarding and induction</li>
+            <li>Product, sales and compliance training</li>
+            <li>Conference content</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <p class="label">How it works</p>
+      <ol class="steps">
+        <li><span class="n">01</span><b>Tell us about your event</b><span>Your date, numbers, venue and what you want people to walk away with. One short conversation is enough.</span></li>
+        <li><span class="n">02</span><b>We build the show around you</b><span>We write the rounds around your group, inside jokes included. You sign them off first.</span></li>
+        <li><span class="n">03</span><b>We bring the kit</b><span>A host, buzzers or phones, the big screen and live scoring, all set up before your guests arrive.</span></li>
+        <li><span class="n">04</span><b>Your team plays</b><span>We run it from the front, all the way to the winners. You take the credit.</span></li>
+      </ol>
+    </div>
+
+    <div class="section">
+      <p class="label">Any size, anywhere</p>
+      <ul class="beliefs">
+        <li><b>Smaller rooms</b><span>Real gameshow buzzers, the kind you’ve seen on TV. They make a room sound like a studio.</span></li>
+        <li><b>Larger rooms</b><span>Everyone’s phone becomes the buzzer. Nothing to download, and up to 300 devices at once.</span></li>
+        <li><b>Online or hybrid</b><span>Remote players buzz, score and win on exactly the same terms as the people in the room.</span></li>
+        <li><b>Giving back</b><span>Our 2025 Movember night raised over £3,000 for men’s health. Running an event for a cause? We’d love to help.</span></li>
+      </ul>
+    </div>
+
+    <div class="section" style="gap:18px">
+      <div class="photos">
+        <a href="#gallery" aria-label="Open the gallery"><img loading="lazy" src="assets/hire/h1.jpg" alt="Colleagues laughing around red gameshow buzzers"></a>
+        <a href="#gallery" aria-label="Open the gallery"><img loading="lazy" src="assets/hire/h3.jpg" alt="A Speed Trivia question and leaderboard on a big screen"></a>
+        <a href="#gallery" aria-label="Open the gallery"><img loading="lazy" src="assets/hire/h2.jpg" alt="Four colleagues reacting to an answer"></a>
+        <a href="#gallery" aria-label="Open the gallery"><img loading="lazy" src="assets/hire/h6.jpg" alt="Guests smiling around the game table"></a>
+      </div>
+    </div>
+
+    <div class="section">
+      <p class="label">Common questions</p>
+      <ul class="beliefs">
+        <li><b>How much does it cost?</b><span>Every show is quoted for your group size, format and how much you want tailored. Running more than one event a year brings the cost per event down.</span></li>
+        <li><b>How far ahead should we book?</b><span>We can turn an event around in a week and reply to enquiries within 72 hours. Christmas and year-end dates go early.</span></li>
+        <li><b>What’s included?</b><span>A professional host (with a co-host for larger groups), buzzers or phone play, big-screen visuals, live scoring, tailored questions, setup and pack-down.</span></li>
+        <li><b>Where do you run events?</b><span>Across the UK, at your venue. We bring everything we need to run the show.</span></li>
+      </ul>
+    </div>
+
+    <div class="section" id="hire-enquire">
+      <p class="label">Tell us your date</p>
+      <form class="enquiry" id="hireForm" action="https://formspree.io/f/meepbzdr" method="POST">
+        <input type="hidden" name="_subject" value="Private hire enquiry (nightofplay.com)">
+        <input type="hidden" name="source" value="nightofplay.com/#private-hire">
+        <label>Full name<input name="name" autocomplete="name" required></label>
+        <label>Organisation<input name="organisation" autocomplete="organization" required></label>
+        <label>Email<input type="email" name="email" autocomplete="email" required></label>
+        <label>Phone (optional)<input type="tel" name="phone" autocomplete="tel"></label>
+        <label>Event date<input type="date" name="event_date" required></label>
+        <label>Group size<input type="number" name="group_size" min="1" inputmode="numeric" required></label>
+        <label class="full">Which show?<select name="experience" required><option value="" disabled selected>Choose one</option><option>The Gameshow</option><option>The Knowledge Show</option><option>Not sure yet</option></select></label>
+        <label class="full">Anything else we should know?<textarea name="message" placeholder="Venue, occasion, in person or online…"></textarea></label>
+        <div class="send"><button class="btn" type="submit">Send enquiry</button><span>No deposit to see a proposal. Or email <a href="mailto:info@nightofplay.com">info@nightofplay.com</a></span></div>
+        <p class="msg" id="hireMsg" role="status" hidden></p>
+      </form>
+    </div>
+  </div>
+</section>
+
 <section class="panel" id="p-events" hidden aria-label="Events">
   <div class="panel-head"><h2>Events</h2><a class="close" href="#" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></a></div>
   <div class="events">
@@ -545,7 +681,7 @@ var GALLERY_INITIAL = 16;
 })();
 
 /* panels: nightofplay.com/#story, #events, #gallery, #playlist */
-var panels = { story: "p-story", events: "p-events", gallery: "p-gallery", playlist: "p-playlist" };
+var panels = { story: "p-story", events: "p-events", "private-hire": "p-hire", gallery: "p-gallery", playlist: "p-playlist" };
 function show() {
   var k = location.hash.slice(1);
   Object.keys(panels).forEach(function (key) {
@@ -559,6 +695,30 @@ window.addEventListener("hashchange", show); show();
 document.addEventListener("keydown", function (e) {
   if (e.key === "Escape" && panels[location.hash.slice(1)]) history.pushState(null, "", location.pathname), show();
 });
+
+/* private hire: in-panel scroll buttons and the enquiry form */
+document.querySelectorAll("[data-scroll]").forEach(function (b) {
+  b.addEventListener("click", function () { document.getElementById(b.dataset.scroll).scrollIntoView({ behavior: "smooth", block: "start" }); });
+});
+(function () {
+  var f = document.getElementById("hireForm"), msg = document.getElementById("hireMsg");
+  if (!f || !window.fetch) return;
+  f.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var btn = f.querySelector("[type=submit]"); btn.disabled = true; btn.textContent = "Sending…";
+    fetch(f.action, { method: "POST", body: new FormData(f), headers: { Accept: "application/json" } })
+      .then(function (r) {
+        if (!r.ok) throw new Error();
+        f.querySelectorAll("label, .send").forEach(function (el) { el.hidden = true; });
+        msg.className = "msg"; msg.textContent = "Thanks, we’ve got it. We’ll come back to you within 72 hours.";
+      })
+      .catch(function () {
+        msg.className = "msg err"; msg.textContent = "That didn’t send. Please try again, or email info@nightofplay.com.";
+        btn.disabled = false; btn.textContent = "Send enquiry";
+      })
+      .then(function () { msg.hidden = false; });
+  });
+})();
 
 document.getElementById("reveal").addEventListener("click", function () {
   document.getElementById("answer").hidden = false; this.hidden = true;
