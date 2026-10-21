@@ -194,7 +194,7 @@
   .sound-btn.is-unmuted .icon-unmuted { display: block; }
   @media (max-width: 600px) { .home { padding-bottom: 110px; } }
   /* Private Hire */
-  .formats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 20px; }
+  .formats { display: grid; gap: 20px; max-width: 900px; }
   .format { display: grid; gap: 14px; align-content: start; min-width: 0; padding: clamp(22px, 3vw, 32px); border-radius: 18px; border: 2px solid rgba(255,255,255,.45); background: rgba(255,255,255,.03); }
   .format .k { font-family: var(--display); font-weight: 700; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--pink); }
   .format h3 { font-family: var(--display); font-weight: 900; font-size: clamp(22px, 2.6vw, 32px); line-height: 1.15; text-transform: uppercase; }
@@ -399,7 +399,7 @@
     </div>
 
     <div class="section">
-      <p class="label">Two ways to play</p>
+      <p class="label">The show</p>
       <div class="formats">
         <div class="format">
           <span class="k">90 minutes · 3 rounds</span>
@@ -409,17 +409,6 @@
             <li><b>Family Fortunes:</b> guess the most popular answers. No specialists, so the newest starter has the same shot as the MD.</li>
             <li><b>The Cube:</b> quick challenges against the clock. It’s about nerve, not knowledge.</li>
             <li><b>Countdown:</b> teams race to build the longest word.</li>
-          </ul>
-        </div>
-        <div class="format">
-          <span class="k">Your content, made competitive</span>
-          <h3>The Knowledge Show</h3>
-          <p>Send us the deck you were going to present. We turn it into rounds, so your people compete over the message instead of sitting through it, and they walk out remembering it. Built for the sessions people usually dread:</p>
-          <ul>
-            <li>All-hands and town halls</li>
-            <li>Onboarding and induction</li>
-            <li>Product, sales and compliance training</li>
-            <li>Conference content</li>
           </ul>
         </div>
       </div>
@@ -469,13 +458,13 @@
       <form class="enquiry" id="hireForm" action="https://formspree.io/f/meepbzdr" method="POST">
         <input type="hidden" name="_subject" value="Private hire enquiry (nightofplay.com)">
         <input type="hidden" name="source" value="nightofplay.com/#private-hire">
+        <input type="hidden" name="experience" value="The Gameshow">
         <label>Full name<input name="name" autocomplete="name" required></label>
         <label>Organisation<input name="organisation" autocomplete="organization" required></label>
         <label>Email<input type="email" name="email" autocomplete="email" required></label>
         <label>Phone (optional)<input type="tel" name="phone" autocomplete="tel"></label>
         <label>Event date<input type="date" name="event_date" required></label>
         <label>Group size<input type="number" name="group_size" min="1" inputmode="numeric" required></label>
-        <label class="full">Which show?<select name="experience" required><option value="" disabled selected>Choose one</option><option>The Gameshow</option><option>The Knowledge Show</option><option>Not sure yet</option></select></label>
         <label class="full">Anything else we should know?<textarea name="message" placeholder="Venue, occasion, in person or online…"></textarea></label>
         <div class="send"><button class="btn" type="submit">Send enquiry</button><span>No deposit to see a proposal. Or email <a href="mailto:info@nightofplay.com">info@nightofplay.com</a></span></div>
         <p class="msg" id="hireMsg" role="status" hidden></p>
