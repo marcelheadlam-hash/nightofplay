@@ -193,7 +193,10 @@
   .sound-btn.is-unmuted .icon-muted { display: none; }
   .sound-btn.is-unmuted .icon-unmuted { display: block; }
   @media (max-width: 600px) { .home { padding-bottom: 110px; } }
-  /* Idle mode: after 3s with no activity the home screen clears so the video plays on its own. A tap or click brings it back. */
+  .hero-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+  .play-btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; line-height: 1; background: rgba(0,0,0,.35); backdrop-filter: blur(4px); }
+  .play-btn svg { width: 14px; height: 14px; }
+  /* Play mode: the PLAY button clears the home screen so the video plays on its own. A tap, click or key brings it back. */
   .brand, nav.menu, .foot, .scrim { transition: opacity .7s ease, visibility .7s ease; }
   body.idle .brand, body.idle nav.menu, body.idle .foot { opacity: 0; visibility: hidden; pointer-events: none; }
   body.idle .scrim { opacity: .3; }
@@ -213,7 +216,10 @@
   <div class="brand">
     <a href="#" aria-label="Night of Play home"><img src="assets/nop-logo-640.png" alt="Night of Play" width="640" height="411"></a>
     <h1 class="tagline" id="tagline">Come as strangers. Leave as a team.</h1>
-    <a class="btn" href="https://tickxts.com/events/bZ7JMmjQ/night-of-play-presents-the-show" target="_blank" rel="noopener">Get your spot · Fri 20 Nov</a>
+    <div class="hero-btns">
+      <a class="btn" href="https://tickxts.com/events/bZ7JMmjQ/night-of-play-presents-the-show" target="_blank" rel="noopener">Get your spot · Fri 20 Nov</a>
+      <button class="btn ghost play-btn" type="button" id="playBtn" aria-label="Play the video with sound"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>Play</button>
+    </div>
     <p class="proof">Seen at <strong>The Crown Estate, the NHS &amp; many more</strong></p>
   </div>
   <nav class="menu" aria-label="Main">
@@ -527,38 +533,40 @@ document.getElementById("reveal").addEventListener("click", function () {
 });
 document.getElementById("yr").textContent = new Date().getFullYear();
 
-/* idle mode: clear the home screen after 3s of inactivity; a tap/click/key brings it back */
+/* play mode: PLAY restarts the video with sound and clears the home screen in one go; a tap/click/key brings it back */
 (function () {
-  var IDLE_MS = 3000, timer = null, swallow = false, body = document.body;
-  function panelOpen() { return !!panels[location.hash.slice(1)]; }
-  function isIdle() { return body.classList.contains("idle"); }
-  function arm() {
-    clearTimeout(timer);
-    timer = setTimeout(function () { if (!panelOpen()) body.classList.add("idle"); }, IDLE_MS);
+  var body = document.body, video = document.getElementById("bgv"),
+      soundBtn = document.getElementById("soundBtn"), playBtn = document.getElementById("playBtn"),
+      swallow = false, swallowTimer = null;
+  function playing() { return body.classList.contains("idle"); }
+  function setSound(on) {
+    video.muted = !on;
+    soundBtn.classList.toggle("is-unmuted", on);
+    soundBtn.setAttribute("aria-label", on ? "Mute sound" : "Unmute sound");
+    soundBtn.title = on ? "Mute" : "Unmute";
   }
-  function wake() { body.classList.remove("idle"); arm(); }
-  // A tap or click wakes the screen. The first tap only wakes it, so it can't hit a link that was invisible.
+  playBtn.addEventListener("click", function () {
+    try { video.currentTime = 0; } catch (e) {}
+    setSound(true);
+    var p = video.play();
+    // If the browser refuses sound, keep the video playing muted rather than stopping it.
+    if (p && p.catch) p.catch(function () { setSound(false); video.play().catch(function () {}); });
+    body.classList.add("idle");
+  });
+  function wake() { body.classList.remove("idle"); }
+  // A tap or click brings the screen back. That first tap only wakes it, so it can't hit a link that was invisible.
   document.addEventListener("pointerdown", function (e) {
-    if (e.target.closest && e.target.closest("#soundBtn")) { if (!isIdle()) arm(); return; }
-    if (isIdle()) swallow = true;
+    if (!playing()) return;
+    if (e.target.closest && e.target.closest("#soundBtn")) return;
+    swallow = true; clearTimeout(swallowTimer);
+    swallowTimer = setTimeout(function () { swallow = false; }, 800);
     wake();
   }, true);
   document.addEventListener("click", function (e) {
     if (swallow) { swallow = false; e.preventDefault(); e.stopPropagation(); }
   }, true);
-  document.addEventListener("keydown", function () { wake(); }, true);
-  // On desktop, moving the mouse brings the screen back (or keeps it showing).
-  document.addEventListener("pointermove", function (e) {
-    if (e.pointerType === "mouse") { if (isIdle()) wake(); else arm(); }
-  }, { passive: true });
-  // Scrolling counts as activity while the screen is showing.
-  ["wheel", "touchmove", "scroll"].forEach(function (ev) {
-    document.addEventListener(ev, function () { if (!isIdle()) arm(); }, { passive: true });
-  });
-  window.addEventListener("hashchange", function () {
-    if (panelOpen()) { clearTimeout(timer); body.classList.remove("idle"); } else arm();
-  });
-  if (!panelOpen()) arm();
+  document.addEventListener("keydown", function () { if (playing()) wake(); }, true);
+  window.addEventListener("hashchange", function () { if (panels[location.hash.slice(1)]) wake(); });
 })();
 
 /* sound toggle */
