@@ -162,12 +162,12 @@
 
   /* Events */
   .events { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 900px; }
-  .ev { display: grid; gap: 10px; align-content: start; text-decoration: none; padding: 26px; border-radius: 16px; border: 2px solid rgba(255,255,255,.45); background: rgba(255,255,255,.03); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+  .ev { display: grid; gap: 10px; align-content: start; grid-template-rows: auto auto auto auto 1fr; text-decoration: none; padding: 26px; border-radius: 16px; border: 2px solid rgba(255,255,255,.45); background: rgba(255,255,255,.03); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
   .ev:hover { transform: translateY(-4px); border-color: var(--fg); box-shadow: var(--glow); }
   .ev .kicker { font-family: var(--display); font-size: 12px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--pink); }
   .ev .t { font-family: var(--display); font-weight: 700; font-size: clamp(20px, 2.2vw, 26px); text-transform: uppercase; line-height: 1.2; }
   .ev .m { font-size: 15px; line-height: 1.5; color: var(--muted); }
-  .ev .cta { justify-self: start; margin-top: 8px; font-family: var(--display); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; border-bottom: 2px solid var(--fg); padding-bottom: 3px; }
+  .ev .cta { justify-self: start; align-self: end; margin-top: 8px; font-family: var(--display); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; border-bottom: 2px solid var(--fg); padding-bottom: 3px; }
 
 
   /* Gallery */
@@ -214,7 +214,10 @@
   .enquiry select option { color: #000; }
   .enquiry textarea { min-height: 120px; resize: vertical; }
   .enquiry input:focus, .enquiry select:focus, .enquiry textarea:focus { outline: none; border-color: var(--pink); box-shadow: 0 0 0 3px rgba(255,43,214,.25); }
-  .enquiry .send { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; }
+  .enquiry .send { grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; }
+  #p-hire .btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+  .clients .more { border: 0; padding-inline: 4px; color: var(--muted); }
+  .photos img.pos-right { object-position: 85% center; }
   .enquiry .send span { font-size: 14px; color: var(--muted); }
   .enquiry .msg { grid-column: 1 / -1; font-size: 16px; line-height: 1.5; }
   .enquiry .msg.err { color: var(--red); }
@@ -382,10 +385,10 @@
     <div class="section" style="gap:22px">
       <p class="why">Nobody bonds over a <em>buffet.</em></p>
       <div class="prose">
-        <p>Most work socials go the same way: a room, a few drinks, and everyone drifting back to the people they already sit next to. Give people something to compete over and that changes in minutes. <strong>Competition is the one language everyone in the building speaks.</strong></p>
-        <p>We bring the Night of Play show to your team: a professional host, all the kit and games everyone already knows how to play. <strong>In person, online or hybrid, for 20 to 300 guests.</strong></p>
+        <p>Most gatherings go the same way: a room, a few drinks, and everyone drifting back to the people they already know. Give people something to compete over and that changes in minutes. <strong>Competition is the one language every room speaks.</strong></p>
+        <p>We bring the Night of Play show to your event: work socials and Christmas parties, birthdays, members’ evenings, weddings, fundraisers and community nights. A professional host, all the kit and games everyone already knows how to play. <strong>In person, online or hybrid, for 20 to 300 guests.</strong></p>
       </div>
-      <div class="clients" aria-label="Organisations we've hosted for"><span>The Crown Estate</span><span>NHS</span><span>MYO Piccadilly</span><span>University of Essex</span><span>Arkhiventeros</span></div>
+      <div class="clients" aria-label="Organisations we've hosted for"><span>The Crown Estate</span><span>NHS</span><span>MYO Piccadilly</span><span>University of Essex</span><span>Arkhiventeros</span><span class="more">&amp; many more</span></div>
       <span class="btns"><button class="btn" type="button" data-scroll="hire-enquire">Get a proposal</button></span>
     </div>
 
@@ -404,9 +407,9 @@
         <div class="format">
           <span class="k">90 minutes · 3 rounds</span>
           <h3>The Gameshow</h3>
-          <p>A live, hosted show built on the TV formats everyone grew up with. Simple rules, no awkward warm-up, and within minutes the colleague who “doesn’t do this sort of thing” is shouting answers with everyone else. Our own rounds, inspired by:</p>
+          <p>A live, hosted show built on the TV formats everyone grew up with. Simple rules, no awkward warm-up, and within minutes the guest who “doesn’t do this sort of thing” is shouting answers with everyone else. Our own rounds, inspired by:</p>
           <ul>
-            <li><b>Family Fortunes:</b> guess the most popular answers. No specialists, so the newest starter has the same shot as the MD.</li>
+            <li><b>Family Fortunes:</b> guess the most popular answers. No specialists, so the quietest person in the room has the same shot as the loudest.</li>
             <li><b>The Cube:</b> quick challenges against the clock. It’s about nerve, not knowledge.</li>
             <li><b>Countdown:</b> teams race to build the longest word.</li>
           </ul>
@@ -420,7 +423,7 @@
         <li><span class="n">01</span><b>Tell us about your event</b><span>Your date, numbers, venue and what you want people to walk away with. One short conversation is enough.</span></li>
         <li><span class="n">02</span><b>We build the show around you</b><span>We write the rounds around your group, inside jokes included. You sign them off first.</span></li>
         <li><span class="n">03</span><b>We bring the kit</b><span>A host, buzzers or phones, the big screen and live scoring, all set up before your guests arrive.</span></li>
-        <li><span class="n">04</span><b>Your team plays</b><span>We run it from the front, all the way to the winners. You take the credit.</span></li>
+        <li><span class="n">04</span><b>Your guests play</b><span>We run it from the front, all the way to the winners. You take the credit.</span></li>
       </ol>
     </div>
 
@@ -438,7 +441,7 @@
       <div class="photos">
         <a href="#gallery" aria-label="Open the gallery"><img loading="lazy" src="assets/hire/h1.jpg" alt="Colleagues laughing around red gameshow buzzers"></a>
         <a href="#gallery" aria-label="Open the gallery"><img loading="lazy" src="assets/hire/h3.jpg" alt="A Speed Trivia question and leaderboard on a big screen"></a>
-        <a href="#gallery" aria-label="Open the gallery"><img loading="lazy" src="assets/hire/h2.jpg" alt="Four colleagues reacting to an answer"></a>
+        <a href="#gallery" aria-label="Open the gallery"><img loading="lazy" class="pos-right" src="assets/hire/h2.jpg" alt="Four colleagues reacting to an answer"></a>
         <a href="#gallery" aria-label="Open the gallery"><img loading="lazy" src="assets/hire/h6.jpg" alt="Guests smiling around the game table"></a>
       </div>
     </div>
@@ -460,7 +463,7 @@
         <input type="hidden" name="source" value="nightofplay.com/#private-hire">
         <input type="hidden" name="experience" value="The Gameshow">
         <label>Full name<input name="name" autocomplete="name" required></label>
-        <label>Organisation<input name="organisation" autocomplete="organization" required></label>
+        <label>Organisation or occasion<input name="organisation" autocomplete="organization" placeholder="e.g. company, club, 30th birthday" required></label>
         <label>Email<input type="email" name="email" autocomplete="email" required></label>
         <label>Phone (optional)<input type="tel" name="phone" autocomplete="tel"></label>
         <label>Event date<input type="date" name="event_date" required></label>
@@ -480,12 +483,13 @@
       <span class="kicker">With AfroSocial</span>
       <span class="t">AfroSocial Games Night</span>
       <span class="m">Sat 24 October 2026 · 6–11pm<br>Market Place, St Paul's</span>
+      <span class="urgency">Hosted by Night of Play</span>
       <span class="cta">Get tickets</span>
     </a>
     <a class="ev" data-ends="2026-11-20" href="https://tickxts.com/events/bZ7JMmjQ/night-of-play-presents-the-show" target="_blank" rel="noopener">
       <span class="kicker">Our Launch Event</span>
       <span class="t">Night of Play presents: The Show</span>
-      <span class="m">Fri 20 November 2026<br>Alaska, Waterloo</span>
+      <span class="m">Fri 20 November 2026 · 7pm–late<br>Alaska, Waterloo</span>
       <span class="urgency">Prices go up as each release sells out</span>
       <span class="cta">Get tickets</span>
     </a>
