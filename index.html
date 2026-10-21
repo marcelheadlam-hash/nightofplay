@@ -193,6 +193,13 @@
   .sound-btn.is-unmuted .icon-muted { display: none; }
   .sound-btn.is-unmuted .icon-unmuted { display: block; }
   @media (max-width: 600px) { .home { padding-bottom: 110px; } }
+  /* App in development */
+  .app-card { display: grid; gap: 14px; justify-items: start; padding: clamp(24px, 3.4vw, 40px); border-radius: 18px; border: 2px solid var(--fg);
+    background: radial-gradient(ellipse 80% 120% at 100% 0%, rgba(255,43,214,.16), rgba(77,92,255,.08) 55%, rgba(255,255,255,.02)); }
+  .app-pill { font-family: var(--display); font-weight: 700; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--pink); border: 1px solid var(--pink); border-radius: 999px; padding: 8px 14px; }
+  .app-name { font-family: var(--display); font-weight: 900; font-size: clamp(24px, 3.4vw, 42px); line-height: 1.15; text-transform: uppercase; text-wrap: balance; }
+  .app-sub { font-size: clamp(17px, 1.6vw, 19px); line-height: 1.6; color: var(--muted); max-width: 56ch; }
+  .app-soon { font-family: var(--display); font-weight: 700; font-size: 14px; letter-spacing: .16em; text-transform: uppercase; }
   .hero-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
   .play-btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; line-height: 1; background: rgba(0,0,0,.35); backdrop-filter: blur(4px); }
   .play-btn svg { width: 14px; height: 14px; }
@@ -297,6 +304,16 @@
         <li><b>I'm not good at games</b><span>You don't need to be. Our games are inspired by TV shows you already know, and everyone has the same chance of winning.</span></li>
         <li><b>What's the vibe?</b><span>Half games night, half night out. It ends with an afterparty and a DJ.</span></li>
       </ul>
+    </div>
+
+    <div class="section" id="app">
+      <p class="label">What's next</p>
+      <div class="app-card">
+        <span class="app-pill">App in development</span>
+        <p class="app-name">The Night of Play app</p>
+        <p class="app-sub">Play our games on the night, straight from your phone. Every round, every vote, every answer, from wherever you're standing in the room.</p>
+        <p class="app-soon">Coming soon.</p>
+      </div>
     </div>
 
     <div class="section" style="gap:18px">
