@@ -98,7 +98,7 @@
 
   /* Panels */
   .panel {
-    position: fixed; inset: 0; z-index: 30; overflow-y: auto;
+    position: fixed; inset: 0; z-index: 30; overflow-y: auto; scrollbar-gutter: stable;
     background: rgba(4,3,8,.94); backdrop-filter: blur(10px);
     padding-block: calc(env(safe-area-inset-top, 0px) + clamp(28px, 5vw, 56px)) calc(env(safe-area-inset-bottom, 0px) + 64px);
     padding-left: max(20px, calc(env(safe-area-inset-left, 0px) + 5vw)); padding-right: max(20px, calc(env(safe-area-inset-right, 0px) + 5vw));
@@ -217,7 +217,7 @@
   .enquiry .send { grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; }
   #p-hire .btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
   .clients .more { border: 0; padding-inline: 4px; color: var(--muted); }
-  .photos img.pos-right { object-position: 85% center; }
+  .photos img.pos-right { object-position: 70% center; }
   .enquiry .send span { font-size: 14px; color: var(--muted); }
   .enquiry .msg { grid-column: 1 / -1; font-size: 16px; line-height: 1.5; }
   .enquiry .msg.err { color: var(--red); }
@@ -683,6 +683,14 @@ function show() {
     if (key === k) p.scrollTop = 0;
   });
   document.body.style.overflow = panels[k] ? "hidden" : "";
+  // Opening a page stops the background video and its sound; closing it brings the video back, muted.
+  var v = document.getElementById("bgv"), sb = document.getElementById("soundBtn");
+  if (panels[k]) {
+    v.pause(); v.muted = true;
+    sb.classList.remove("is-unmuted"); sb.setAttribute("aria-label", "Unmute sound"); sb.title = "Unmute";
+  } else if (v.paused) {
+    var pp = v.play(); if (pp && pp.catch) pp.catch(function () {});
+  }
 }
 window.addEventListener("hashchange", show); show();
 document.addEventListener("keydown", function (e) {
