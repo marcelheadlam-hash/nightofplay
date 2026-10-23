@@ -726,12 +726,27 @@ document.getElementById("reveal").addEventListener("click", function () {
 });
 document.getElementById("yr").textContent = new Date().getFullYear();
 
-/* play mode: PLAY restarts the video with sound and clears the home screen in one go; a tap/click/key brings it back */
+/* idle mode: the words fade after 3s without mouse movement and come back the moment it moves.
+   PLAY carries on from where the video is, with sound, and clears the screen straight away. */
 (function () {
   var body = document.body, video = document.getElementById("bgv"),
       soundBtn = document.getElementById("soundBtn"), playBtn = document.getElementById("playBtn"),
-      swallow = false, swallowTimer = null;
+      swallow = false, swallowTimer = null, idleTimer = null, lastX = null, lastY = null,
+      IDLE_MS = 3000, hasMouse = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
   function playing() { return body.classList.contains("idle"); }
+  function pageOpen() { return !!panels[location.hash.slice(1)]; }
+  function arm() {
+    clearTimeout(idleTimer);
+    if (!hasMouse) return;
+    idleTimer = setTimeout(function () { if (!pageOpen()) body.classList.add("idle"); }, IDLE_MS);
+  }
+  // Only real movement counts; browsers can fire mousemove when the page changes under a still cursor.
+  document.addEventListener("mousemove", function (e) {
+    if (e.screenX === lastX && e.screenY === lastY) return;
+    lastX = e.screenX; lastY = e.screenY;
+    wake(); arm();
+  }, { passive: true });
+  arm();
   function setSound(on) {
     video.muted = !on;
     soundBtn.classList.toggle("is-unmuted", on);
@@ -739,7 +754,7 @@ document.getElementById("yr").textContent = new Date().getFullYear();
     soundBtn.title = on ? "Mute" : "Unmute";
   }
   playBtn.addEventListener("click", function () {
-    try { video.currentTime = 0; } catch (e) {}
+    clearTimeout(idleTimer);
     setSound(true);
     var p = video.play();
     // If the browser refuses sound, keep the video playing muted rather than stopping it.
@@ -753,13 +768,13 @@ document.getElementById("yr").textContent = new Date().getFullYear();
     if (e.target.closest && e.target.closest("#soundBtn")) return;
     swallow = true; clearTimeout(swallowTimer);
     swallowTimer = setTimeout(function () { swallow = false; }, 800);
-    wake();
+    wake(); arm();
   }, true);
   document.addEventListener("click", function (e) {
     if (swallow) { swallow = false; e.preventDefault(); e.stopPropagation(); }
   }, true);
-  document.addEventListener("keydown", function () { if (playing()) wake(); }, true);
-  window.addEventListener("hashchange", function () { if (panels[location.hash.slice(1)]) wake(); });
+  document.addEventListener("keydown", function () { if (playing()) wake(); arm(); }, true);
+  window.addEventListener("hashchange", function () { if (pageOpen()) wake(); arm(); });
 })();
 
 /* sound toggle */
