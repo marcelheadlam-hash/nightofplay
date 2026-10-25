@@ -6,7 +6,7 @@
 <title>Night of Play · Come as strangers. Leave as a team.</title>
 <meta name="description" content="Night of Play runs gameshow nights in London built for meeting people. We put you in a small team, play games inspired by TV shows you already know, and finish with an afterparty.">
 <link rel="canonical" href="https://www.nightofplay.com/">
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
@@ -47,19 +47,20 @@
     font-weight: 400 900; font-display: swap;
   }
 
-  /* Single dark neon screen: logo, why-line, CTA, menu. Each section opens as a full-screen panel. */
+  /* Single light screen: logo, why-line, CTA, menu. Each section opens as a full-screen panel. */
   :root {
-    --bg: #050407;
-    --fg: #ffffff;
-    --muted: rgba(255,255,255,.7);
-    --line: rgba(255,255,255,.2);
-    --pink: #ff2bd6;
+    --bg: #ffffff;
+    --fg: #0a0a0c;
+    --muted: rgba(10,10,12,.72);
+    --line: rgba(10,10,12,.16);
+    --pink: #d4119f;           /* darker than the neon pink so small text stays readable on white */
     --blue: #4d5cff;
-    --red: #ff4141; --green: #22d36b; --yellow: #ffd21f;
-    --glow: 0 0 6px rgba(255,255,255,.9), 0 0 16px rgba(255,255,255,.5), 0 0 34px rgba(255,43,214,.35);
+    --red: #e02a2a; --green: #16a653; --yellow: #f2b705;
+    --glow: 0 6px 22px rgba(212,17,159,.28), 0 2px 6px rgba(0,0,0,.12);
+    --halo: 0 0 14px rgba(255,255,255,.95), 0 0 4px rgba(255,255,255,.9);
     --display: 'Ethnocentric', 'Orbitron', 'Arial Black', sans-serif;
     --body: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
-    color-scheme: dark;
+    color-scheme: light;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   [hidden] { display: none !important; }
@@ -76,30 +77,39 @@
   .home { position: relative; min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; gap: 28px;
     padding-block: clamp(28px, 5vw, 56px) 96px;
     padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
-  .bg { position: fixed; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; background: #000; }
-  .scrim { position: fixed; inset: 0; z-index: -1; background: linear-gradient(to top, rgba(0,0,0,.7), rgba(0,0,0,0) 28%), radial-gradient(ellipse 46% 62% at 50% 42%, rgba(0,0,0,.58), rgba(0,0,0,.22) 100%); }
+  /* Background video. It's 1380×1080, nearly square, so a full-bleed "cover" crop on a widescreen
+     cut people's heads off. It now fills a little more than the screen height, anchored to the top,
+     so only a sliver of the bottom is lost. On wide screens the sides fade into the white page;
+     on narrow screens it still fills the width. */
+  .bg { position: fixed; top: 0; left: 50%; transform: translateX(-50%); z-index: -2;
+    height: 108vh; height: 108dvh; width: auto; aspect-ratio: 1380 / 1080;
+    object-fit: cover; object-position: 50% 0; background: var(--bg); }
+  @media (min-aspect-ratio: 138/100) {
+    .bg { -webkit-mask-image: linear-gradient(to right, transparent, #000 9%, #000 91%, transparent); mask-image: linear-gradient(to right, transparent, #000 9%, #000 91%, transparent); }
+  }
+  .scrim { position: fixed; inset: 0; z-index: -1; background: linear-gradient(to top, rgba(255,255,255,.85), rgba(255,255,255,0) 30%), radial-gradient(ellipse 46% 62% at 50% 42%, rgba(255,255,255,.62), rgba(255,255,255,.18) 100%); }
   .brand { display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; }
-  .brand img { width: clamp(130px, 13vw, 180px); height: auto; filter: drop-shadow(0 0 14px rgba(150,80,255,.4)); }
-  .tagline { font-family: var(--display); font-weight: 900; font-size: clamp(28px, 4.6vw, 58px); line-height: 1.1; letter-spacing: .01em; text-transform: uppercase; text-wrap: balance; max-width: 18ch; text-shadow: 0 2px 18px rgba(0,0,0,.85), 0 0 28px rgba(255,43,214,.35); }
+  .brand img { width: clamp(130px, 13vw, 180px); height: auto; filter: drop-shadow(0 0 12px rgba(255,255,255,.9)); }
+  .tagline { font-family: var(--display); font-weight: 900; font-size: clamp(28px, 4.6vw, 58px); line-height: 1.1; letter-spacing: .01em; text-transform: uppercase; text-wrap: balance; max-width: 18ch; text-shadow: var(--halo), 0 0 30px rgba(255,255,255,.8); }
   .sub { font-size: clamp(16px, 1.6vw, 19px); line-height: 1.55; color: var(--muted); max-width: 46ch; text-wrap: balance; }
   nav.menu { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .15em; padding-top: 12px; }
   nav.menu a {
-    font-family: var(--display); font-weight: 700; text-transform: uppercase; text-decoration: none; color: rgba(255,255,255,.88);
+    font-family: var(--display); font-weight: 700; text-transform: uppercase; text-decoration: none; color: var(--fg);
     font-size: clamp(24px, 3.6vw, 46px); line-height: 1.08; letter-spacing: .02em; text-align: center;
-    transition: text-shadow .25s ease, transform .25s ease;
+    transition: color .25s ease, transform .25s ease;
   }
-  nav.menu a { text-shadow: 0 2px 14px rgba(0,0,0,.8); }
-  nav.menu a:hover, nav.menu a:focus-visible { text-shadow: var(--glow); transform: scale(1.03); outline: none; }
+  nav.menu a { text-shadow: var(--halo); }
+  nav.menu a:hover, nav.menu a:focus-visible { color: var(--pink); transform: scale(1.03); outline: none; }
   .foot { display: flex; flex-direction: column; align-items: center; gap: 16px; }
   .socials { display: flex; gap: 14px; }
-  .socials a { width: 48px; height: 48px; border: 2px solid var(--fg); border-radius: 50%; display: grid; place-items: center; }
+  .socials a { width: 48px; height: 48px; border: 2px solid var(--fg); border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.6); }
   .socials svg { width: 52%; height: 52%; }
-  .legal { font-size: 12px; line-height: 1.6; color: rgba(255,255,255,.7); text-shadow: 0 1px 6px rgba(0,0,0,.9); text-align: center; max-width: 64ch; }
+  .legal { font-size: 12px; line-height: 1.6; color: var(--muted); text-shadow: var(--halo); text-align: center; max-width: 64ch; }
 
   /* Panels */
   .panel {
     position: fixed; inset: 0; z-index: 30; overflow-y: auto; scrollbar-gutter: stable;
-    background: rgba(4,3,8,.94); backdrop-filter: blur(10px);
+    background: var(--bg);
     padding-block: calc(env(safe-area-inset-top, 0px) + clamp(28px, 5vw, 56px)) calc(env(safe-area-inset-bottom, 0px) + 64px);
     padding-left: max(20px, calc(env(safe-area-inset-left, 0px) + 5vw)); padding-right: max(20px, calc(env(safe-area-inset-right, 0px) + 5vw));
   }
@@ -112,7 +122,7 @@
   /* Our Story */
   .story { display: grid; gap: clamp(40px, 6vw, 64px); }
   .story .why { font-family: var(--display); font-weight: 700; font-size: clamp(26px, 3.6vw, 44px); line-height: 1.2; text-wrap: balance; }
-  .story .why em { font-style: normal; color: var(--pink); text-shadow: 0 0 18px rgba(255,43,214,.45); }
+  .story .why em { font-style: normal; color: var(--pink); }
   .prose { display: grid; gap: 16px; font-size: clamp(17px, 1.6vw, 19px); line-height: 1.6; color: var(--muted); }
   .prose strong { color: var(--fg); font-weight: 600; }
   .label { font-family: var(--display); font-weight: 700; font-size: clamp(14px, 1.3vw, 16px); letter-spacing: .16em; text-transform: uppercase; color: var(--fg); margin-bottom: 18px; }
@@ -131,17 +141,17 @@
   .beliefs span { font-size: 16px; line-height: 1.55; color: var(--muted); }
   @media (max-width: 640px) { .beliefs li { grid-template-columns: 1fr; } }
   .photos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
-  .photos a { display: block; aspect-ratio: 4 / 5; border-radius: 12px; overflow: hidden; background: #111; max-width: 100%; }
+  .photos a { display: block; aspect-ratio: 4 / 5; border-radius: 12px; overflow: hidden; background: #eee; max-width: 100%; }
   .photos img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
   .photos a:hover img { transform: scale(1.06); }
   @media (max-width: 640px) { .photos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   .closing { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px; padding-top: 12px; }
   .closing p { font-family: var(--display); font-weight: 700; font-size: clamp(18px, 2.2vw, 26px); text-wrap: balance; }
   .closing .btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
-  .proof { font-size: 14px; color: var(--muted); letter-spacing: .02em; text-shadow: 0 1px 8px rgba(0,0,0,.9); }
+  .proof { font-size: 14px; color: var(--fg); letter-spacing: .02em; text-shadow: var(--halo); }
   .proof strong { color: var(--fg); font-weight: 600; }
   .dropcap::first-letter { float: left; font-family: var(--display); font-weight: 900; font-size: 3.3em; line-height: .82; padding: 6px 12px 0 0; color: var(--pink); }
-  .quiz { margin-top: clamp(28px, 4vw, 44px); border: 2px solid var(--fg); border-radius: 18px; padding: clamp(22px, 3vw, 34px); display: grid; gap: 14px; justify-items: center; text-align: center; background: rgba(255,255,255,.03); }
+  .quiz { margin-top: clamp(28px, 4vw, 44px); border: 2px solid var(--fg); border-radius: 18px; padding: clamp(22px, 3vw, 34px); display: grid; gap: 14px; justify-items: center; text-align: center; background: rgba(0,0,0,.03); }
   .quiz .k { font-family: var(--display); font-weight: 700; font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: var(--pink); }
   .quiz .q { font-family: var(--display); font-weight: 700; font-size: clamp(20px, 2.6vw, 30px); line-height: 1.25; text-wrap: balance; }
   .quiz .a { font-size: clamp(17px, 1.7vw, 20px); line-height: 1.5; color: var(--muted); text-wrap: balance; }
@@ -150,19 +160,19 @@
   .urgency { font-size: 14px; color: var(--pink); }
   /* Why play */
   .hook { font-family: var(--display); font-weight: 900; font-size: clamp(34px, 6vw, 76px); line-height: 1.05; text-transform: uppercase; text-wrap: balance; }
-  .hook em { font-style: normal; color: var(--pink); text-shadow: 0 0 22px rgba(255,43,214,.5); }
+  .hook em { font-style: normal; color: var(--pink); }
   .hook-sub { font-size: clamp(17px, 1.7vw, 21px); line-height: 1.55; color: var(--muted); margin-top: 14px; }
   .reasons { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 26px; margin-top: clamp(28px, 4vw, 44px); }
   .reasons div { display: grid; gap: 10px; align-content: start; min-width: 0; padding: 24px 0 0; border-top: 1px solid var(--line); }
   .reasons b { font-family: var(--display); font-weight: 700; font-size: clamp(18px, 1.9vw, 23px); line-height: 1.25; text-transform: uppercase; }
   .reasons span { font-size: 16px; line-height: 1.55; color: var(--muted); }
-  .btn { display: inline-block; text-decoration: none; background: var(--fg); color: #000; font-family: var(--display); font-weight: 700; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; padding: 16px 26px; border-radius: 999px; transition: box-shadow .25s ease, transform .25s ease; }
+  .btn { display: inline-block; text-decoration: none; background: var(--fg); color: #fff; font-family: var(--display); font-weight: 700; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; padding: 16px 26px; border-radius: 999px; transition: box-shadow .25s ease, transform .25s ease; }
   .btn:hover { box-shadow: var(--glow); transform: translateY(-2px); }
   .btn.ghost { background: transparent; color: var(--fg); border: 2px solid var(--fg); }
 
   /* Events */
   .events { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 900px; }
-  .ev { display: grid; gap: 10px; align-content: start; grid-template-rows: auto auto auto auto 1fr; text-decoration: none; padding: 26px; border-radius: 16px; border: 2px solid rgba(255,255,255,.45); background: rgba(255,255,255,.03); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+  .ev { display: grid; gap: 10px; align-content: start; grid-template-rows: auto auto auto auto 1fr; text-decoration: none; padding: 26px; border-radius: 16px; border: 2px solid rgba(0,0,0,.22); background: rgba(0,0,0,.025); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
   .ev:hover { transform: translateY(-4px); border-color: var(--fg); box-shadow: var(--glow); }
   .ev .kicker { font-family: var(--display); font-size: 12px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--pink); }
   .ev .t { font-family: var(--display); font-weight: 700; font-size: clamp(20px, 2.2vw, 26px); text-transform: uppercase; line-height: 1.2; }
@@ -172,7 +182,7 @@
 
   /* Gallery */
   .mosaic { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); grid-auto-rows: 180px; grid-auto-flow: dense; gap: 12px; }
-  .tile { position: relative; overflow: hidden; border-radius: 12px; background: #111; }
+  .tile { position: relative; overflow: hidden; border-radius: 12px; background: #eee; }
   .tile img, .tile video { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
   .tile:hover img, .tile:hover video { transform: scale(1.06); }
   .tile.wide { grid-column: span 2; } .tile.tall { grid-row: span 2; } .tile.big { grid-column: span 2; grid-row: span 2; }
@@ -186,7 +196,7 @@
   .note a { color: var(--fg); }
   /* Sound toggle */
   .sound-btn { position: fixed; right: calc(env(safe-area-inset-right, 0px) + clamp(16px, 3vw, 32px)); bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 32px)); z-index: 5;
-    width: 50px; height: 50px; border: 2px solid var(--fg); border-radius: 50%; background: rgba(0,0,0,.4); backdrop-filter: blur(4px); color: var(--fg); display: grid; place-items: center; cursor: pointer; transition: transform .25s ease, box-shadow .25s ease; }
+    width: 50px; height: 50px; border: 2px solid var(--fg); border-radius: 50%; background: rgba(255,255,255,.7); backdrop-filter: blur(4px); color: var(--fg); display: grid; place-items: center; cursor: pointer; transition: transform .25s ease, box-shadow .25s ease; }
   .sound-btn:hover { transform: translateY(-3px); box-shadow: var(--glow); }
   .sound-btn svg { width: 52%; height: 52%; }
   .sound-btn .icon-unmuted { display: none; }
@@ -195,7 +205,7 @@
   @media (max-width: 600px) { .home { padding-bottom: 110px; } }
   /* Private Hire */
   .formats { display: grid; gap: 20px; max-width: 900px; }
-  .format { display: grid; gap: 14px; align-content: start; min-width: 0; padding: clamp(22px, 3vw, 32px); border-radius: 18px; border: 2px solid rgba(255,255,255,.45); background: rgba(255,255,255,.03); }
+  .format { display: grid; gap: 14px; align-content: start; min-width: 0; padding: clamp(22px, 3vw, 32px); border-radius: 18px; border: 2px solid rgba(0,0,0,.22); background: rgba(0,0,0,.025); }
   .format .k { font-family: var(--display); font-weight: 700; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--pink); }
   .format h3 { font-family: var(--display); font-weight: 900; font-size: clamp(22px, 2.6vw, 32px); line-height: 1.15; text-transform: uppercase; }
   .format p { font-size: 16px; line-height: 1.6; color: var(--muted); }
@@ -206,14 +216,14 @@
   .stats div { border-top: 2px solid var(--fg); padding-top: 12px; display: grid; gap: 4px; }
   .stats b { font-family: var(--display); font-weight: 900; font-size: clamp(26px, 3.4vw, 40px); line-height: 1.1; }
   .stats span { font-size: 14px; line-height: 1.5; color: var(--muted); }
-  .enquiry { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 20px; border: 2px solid var(--fg); border-radius: 18px; padding: clamp(22px, 3vw, 34px); background: rgba(255,255,255,.03); }
+  .enquiry { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 20px; border: 2px solid var(--fg); border-radius: 18px; padding: clamp(22px, 3vw, 34px); background: rgba(0,0,0,.025); }
   .enquiry label { display: grid; gap: 8px; font-size: 14px; font-weight: 600; letter-spacing: .02em; min-width: 0; }
   .enquiry label.full { grid-column: 1 / -1; }
-  .enquiry input, .enquiry select, .enquiry textarea { width: 100%; font: inherit; font-weight: 400; font-size: 16px; color: var(--fg); background: rgba(0,0,0,.35); border: 1px solid rgba(255,255,255,.35); border-radius: 10px; padding: 12px 14px; }
-  .enquiry select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, #fff 50%), linear-gradient(135deg, #fff 50%, transparent 50%); background-position: calc(100% - 20px) 50%, calc(100% - 14px) 50%; background-size: 6px 6px; background-repeat: no-repeat; padding-right: 36px; }
-  .enquiry select option { color: #000; }
+  .enquiry input, .enquiry select, .enquiry textarea { width: 100%; font: inherit; font-weight: 400; font-size: 16px; color: var(--fg); background: #fff; border: 1px solid rgba(0,0,0,.25); border-radius: 10px; padding: 12px 14px; }
+  .enquiry select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, #000 50%), linear-gradient(135deg, #000 50%, transparent 50%); background-position: calc(100% - 20px) 50%, calc(100% - 14px) 50%; background-size: 6px 6px; background-repeat: no-repeat; padding-right: 36px; }
+  .enquiry select option { color: #000; background: #fff; }
   .enquiry textarea { min-height: 120px; resize: vertical; }
-  .enquiry input:focus, .enquiry select:focus, .enquiry textarea:focus { outline: none; border-color: var(--pink); box-shadow: 0 0 0 3px rgba(255,43,214,.25); }
+  .enquiry input:focus, .enquiry select:focus, .enquiry textarea:focus { outline: none; border-color: var(--pink); box-shadow: 0 0 0 3px rgba(212,17,159,.2); }
   .enquiry .send { grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; }
   #p-hire .btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
   .clients .more { border: 0; padding-inline: 4px; color: var(--muted); }
@@ -224,7 +234,7 @@
   @media (max-width: 640px) { .enquiry { grid-template-columns: 1fr; } }
   /* App in development */
   .app-card { display: grid; gap: 14px; justify-items: start; padding: clamp(24px, 3.4vw, 40px); border-radius: 18px; border: 2px solid var(--fg);
-    background: radial-gradient(ellipse 80% 120% at 100% 0%, rgba(255,43,214,.16), rgba(77,92,255,.08) 55%, rgba(255,255,255,.02)); }
+    background: radial-gradient(ellipse 80% 120% at 100% 0%, rgba(255,43,214,.10), rgba(77,92,255,.06) 55%, rgba(0,0,0,.015)); }
   .app-pill { font-family: var(--display); font-weight: 700; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--pink); border: 1px solid var(--pink); border-radius: 999px; padding: 8px 14px; }
   .app-name { font-family: var(--display); font-weight: 900; font-size: clamp(24px, 3.4vw, 42px); line-height: 1.15; text-transform: uppercase; text-wrap: balance; }
   .app-sub { font-size: clamp(17px, 1.6vw, 19px); line-height: 1.6; color: var(--muted); max-width: 56ch; }
@@ -236,7 +246,7 @@
   .perks span { font-size: 15px; line-height: 1.55; color: var(--muted); }
   .app-soon { font-family: var(--display); font-weight: 700; font-size: 14px; letter-spacing: .16em; text-transform: uppercase; }
   .hero-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
-  .play-btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; line-height: 1; background: rgba(0,0,0,.35); backdrop-filter: blur(4px); }
+  .play-btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; line-height: 1; background: rgba(255,255,255,.7); backdrop-filter: blur(4px); }
   .play-btn svg { width: 14px; height: 14px; }
   /* Play mode: the PLAY button clears the home screen so the video plays on its own. A tap, click or key brings it back. */
   .brand, nav.menu, .foot, .scrim { transition: opacity .7s ease, visibility .7s ease; }
@@ -383,7 +393,7 @@
   <div class="panel-head"><h2>Private Hire</h2><a class="close" href="#" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></a></div>
   <div class="story">
     <div class="section" style="gap:22px">
-      <p class="why">Nobody bonds over a <em>buffet.</em></p>
+      <p class="why">Nobody bonds over <em>drinks.</em></p>
       <div class="prose">
         <p>Most gatherings go the same way: a room, a few drinks, and everyone drifting back to the people they already know. Give people something to compete over and that changes in minutes. <strong>Competition is the one language every room speaks.</strong></p>
         <p>We bring the Night of Play show to your event: work socials and Christmas parties, birthdays, members’ evenings, weddings, fundraisers and community nights. A professional host, all the kit and games everyone already knows how to play. <strong>In person, online or hybrid, for 20 to 300 guests.</strong></p>
