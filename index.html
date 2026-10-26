@@ -134,10 +134,9 @@
   .beliefs span { font-size: 16px; line-height: 1.55; color: var(--muted); }
   @media (max-width: 640px) { .beliefs li { grid-template-columns: 1fr; } }
   .photos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
-  .photos a { display: block; aspect-ratio: 4 / 5; border-radius: 12px; overflow: hidden; background: #eee; max-width: 100%; }
+  .photos > div { display: block; aspect-ratio: 4 / 5; border-radius: 12px; overflow: hidden; background: #eee; max-width: 100%; }
   .photos img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
-  .photos a:hover img { transform: scale(1.06); }
-  @media (max-width: 640px) { .photos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 640px) { .photos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   .closing { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px; padding-top: 12px; }
   .closing p { font-family: var(--display); font-weight: 700; font-size: clamp(18px, 2.2vw, 26px); text-wrap: balance; }
   .closing .btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
@@ -173,15 +172,6 @@
   .ev .cta { justify-self: start; align-self: end; margin-top: 8px; font-family: var(--display); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; border-bottom: 2px solid var(--fg); padding-bottom: 3px; }
 
 
-  /* Gallery */
-  .mosaic { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); grid-auto-rows: 180px; grid-auto-flow: dense; gap: 12px; }
-  .tile { position: relative; overflow: hidden; border-radius: 12px; background: #eee; }
-  .tile img, .tile video { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
-  .tile:hover img, .tile:hover video { transform: scale(1.06); }
-  .tile.wide { grid-column: span 2; } .tile.tall { grid-row: span 2; } .tile.big { grid-column: span 2; grid-row: span 2; }
-  .tile-hidden { display: none; }
-  #gallery-more-wrap { text-align: center; margin-top: 26px; }
-  @media (max-width: 600px) { .mosaic { grid-auto-rows: 140px; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); } }
   /* Playlist */
   .playlist-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 22px; }
   .playlist-grid iframe { width: 100%; border: 0; border-radius: 12px; }
@@ -272,7 +262,6 @@
     <a href="#story">Our Story</a>
     <a href="#events">Events</a>
     <a href="#private-hire">Private Hire</a>
-    <a href="#gallery">Gallery</a>
     <a href="#playlist">Playlist</a>
   </nav>
   <div class="foot">
@@ -367,10 +356,10 @@
 
     <div class="section" style="gap:18px">
       <div class="photos">
-        <a href="#gallery" aria-label="Open the gallery"><img loading="lazy" src="assets/gallery/g24.jpg" alt="A player at the buzzers, hands on her head, as the crowd behind her reacts"></a>
-        <a href="#gallery" aria-label="Open the gallery"><img loading="lazy" src="assets/gallery/g33.jpg" alt="A table mid-game, laughing"></a>
-        <a href="#gallery" aria-label="Open the gallery"><img loading="lazy" src="assets/gallery/g08.jpg" alt="A crowd around giant Jenga"></a>
-        <a href="#gallery" aria-label="Open the gallery"><img loading="lazy" src="assets/gallery/g_bar.jpg" alt="A team posing in front of the Night of Play screen"></a>
+        <div><img loading="lazy" src="assets/gallery/g24.jpg" alt="A player at the buzzers, hands on her head, as the crowd behind her reacts"></div>
+        <div><img loading="lazy" src="assets/gallery/g33.jpg" alt="A table mid-game, laughing"></div>
+        <div><img loading="lazy" src="assets/gallery/g08.jpg" alt="A crowd around giant Jenga"></div>
+        <div><img loading="lazy" src="assets/gallery/g_bar.jpg" alt="A team posing in front of the Night of Play screen"></div>
       </div>
       <div class="closing">
         <p>Come alone or bring the group chat. We'll put you on a team either way.</p>
@@ -443,10 +432,10 @@
 
     <div class="section" style="gap:18px">
       <div class="photos">
-        <a href="#gallery" aria-label="Open the gallery"><img loading="lazy" src="assets/hire/h1.jpg" alt="Colleagues laughing around red gameshow buzzers"></a>
-        <a href="#gallery" aria-label="Open the gallery"><img loading="lazy" src="assets/hire/h3.jpg" alt="A Speed Trivia question and leaderboard on a big screen"></a>
-        <a href="#gallery" aria-label="Open the gallery"><img loading="lazy" class="pos-right" src="assets/hire/h2.jpg" alt="Four colleagues reacting to an answer"></a>
-        <a href="#gallery" aria-label="Open the gallery"><img loading="lazy" src="assets/hire/h6.jpg" alt="Guests smiling around the game table"></a>
+        <div><img loading="lazy" src="assets/hire/h1.jpg" alt="Colleagues laughing around red gameshow buzzers"></div>
+        <div><img loading="lazy" src="assets/hire/h3.jpg" alt="A Speed Trivia question and leaderboard on a big screen"></div>
+        <div><img loading="lazy" class="pos-right" src="assets/hire/h2.jpg" alt="Four colleagues reacting to an answer"></div>
+        <div><img loading="lazy" src="assets/hire/h6.jpg" alt="Guests smiling around the game table"></div>
       </div>
     </div>
 
@@ -501,13 +490,6 @@
   <p class="note" id="events-empty" hidden>Next date coming soon. Follow <a href="https://www.instagram.com/nightofplay" target="_blank" rel="noopener">@nightofplay</a> to hear first.</p>
 </section>
 
-<!-- GALLERY -->
-<section class="panel" id="p-gallery" hidden aria-label="Gallery">
-  <div class="panel-head"><h2>Gallery</h2><a class="close" href="#" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></a></div>
-  <div class="mosaic" id="mosaic"></div>
-  <div id="gallery-more-wrap"></div>
-</section>
-
 <!-- PLAYLIST -->
 <section class="panel" id="p-playlist" hidden aria-label="Playlist">
   <div class="panel-head"><h2>Playlist</h2><a class="close" href="#" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></a></div>
@@ -533,105 +515,6 @@ const PLAYLISTS = [
   { url: "https://open.spotify.com/playlist/4ADOQoov0ikPZSku4nYDmL" },  // Afrobeats
 ];
 
-const GALLERY = [
-  { type: "image", src: "assets/gallery/g37.jpg", size: "big" },
-  { type: "image", src: "assets/gallery/g01_banner.jpg", size: "wide" },
-  { type: "image", src: "assets/gallery/g50.jpg", size: "tall" },
-  { type: "image", src: "assets/gallery/g07.jpg", size: "tall" },
-  { type: "video", src: "assets/gallery/v06.mp4", size: "tall" },
-  { type: "image", src: "assets/gallery/g42.jpg", size: "tall" },
-  { type: "image", src: "assets/gallery/g45.jpg", size: "" },
-  { type: "image", src: "assets/gallery/g20.jpg", size: "wide" },
-  { type: "image", src: "assets/gallery/g17.jpg", size: "tall" },
-  { type: "image", src: "assets/gallery/g56.jpg", size: "tall" },
-  { type: "image", src: "assets/gallery/g46.jpg", size: "" },
-  { type: "video", src: "assets/gallery/v01.mp4", size: "wide" },
-  { type: "image", src: "assets/gallery/g33.jpg", size: "wide" },
-  { type: "image", src: "assets/gallery/g13.jpg", size: "tall" },
-  { type: "image", src: "assets/gallery/g38.jpg", size: "" },
-  { type: "image", src: "assets/gallery/g54.jpg", size: "wide" },
-  { type: "image", src: "assets/gallery/g02.jpg", size: "" },
-  { type: "image", src: "assets/gallery/g03.jpg", size: "wide" },
-  { type: "image", src: "assets/gallery/g04.jpg", size: "tall" },
-  { type: "image", src: "assets/gallery/g05.jpg", size: "" },
-  { type: "image", src: "assets/gallery/g06.jpg", size: "tall" },
-  { type: "video", src: "assets/gallery/v02.mp4", size: "wide" },
-  { type: "image", src: "assets/gallery/g08.jpg", size: "big" },
-  { type: "image", src: "assets/gallery/g09.jpg", size: "tall" },
-  { type: "image", src: "assets/gallery/g10.jpg", size: "" },
-  { type: "image", src: "assets/gallery/g11.jpg", size: "tall" },
-  { type: "image", src: "assets/gallery/g12.jpg", size: "" },
-  { type: "video", src: "assets/gallery/v03.mp4", size: "wide" },
-  { type: "image", src: "assets/gallery/g14.jpg", size: "tall" },
-  { type: "image", src: "assets/gallery/g15.jpg", size: "" },
-  { type: "image", src: "assets/gallery/g16.jpg", size: "" },
-  { type: "image", src: "assets/gallery/g18.jpg", size: "" },
-  { type: "image", src: "assets/gallery/g19.jpg", size: "tall" },
-  { type: "video", src: "assets/gallery/v04.mp4", size: "wide" },
-  { type: "image", src: "assets/gallery/g21.jpg", size: "big" },
-  { type: "image", src: "assets/gallery/g22.jpg", size: "tall" },
-  { type: "image", src: "assets/gallery/g23.jpg", size: "" },
-  { type: "image", src: "assets/gallery/g24.jpg", size: "tall" },
-  { type: "image", src: "assets/gallery/g25.jpg", size: "" },
-  { type: "video", src: "assets/gallery/v05.mp4", size: "tall" },
-  { type: "image", src: "assets/gallery/g26.jpg", size: "tall" },
-  { type: "image", src: "assets/gallery/g27.jpg", size: "" },
-  { type: "image", src: "assets/gallery/g28.jpg", size: "tall" },
-  { type: "image", src: "assets/gallery/g29.jpg", size: "" },
-  { type: "image", src: "assets/gallery/g30.jpg", size: "tall" },
-  { type: "video", src: "assets/gallery/v07.mp4", size: "wide" },
-  { type: "image", src: "assets/gallery/g31.jpg", size: "big" },
-  { type: "image", src: "assets/gallery/g32.jpg", size: "wide" },
-  { type: "image", src: "assets/gallery/g34.jpg", size: "" },
-  { type: "image", src: "assets/gallery/g35.jpg", size: "wide" },
-  { type: "image", src: "assets/gallery/g36.jpg", size: "wide" },
-  { type: "video", src: "assets/gallery/v08.mp4", size: "tall" },
-  { type: "image", src: "assets/gallery/g39.jpg", size: "tall" },
-  { type: "image", src: "assets/gallery/g40.jpg", size: "" },
-  { type: "image", src: "assets/gallery/g41.jpg", size: "wide" },
-  { type: "image", src: "assets/gallery/g43.jpg", size: "" },
-  { type: "image", src: "assets/gallery/g44.jpg", size: "wide" },
-  { type: "video", src: "assets/gallery/v09.mp4", size: "wide" },
-  { type: "image", src: "assets/gallery/g47.jpg", size: "big" },
-  { type: "image", src: "assets/gallery/g48.jpg", size: "tall" },
-  { type: "image", src: "assets/gallery/g49.jpg", size: "" },
-  { type: "image", src: "assets/gallery/g51.jpg", size: "tall" },
-  { type: "image", src: "assets/gallery/g52.jpg", size: "" },
-  { type: "video", src: "assets/gallery/v10.mp4", size: "tall" },
-  { type: "image", src: "assets/gallery/g53.jpg", size: "tall" },
-  { type: "image", src: "assets/gallery/g55.jpg", size: "" },
-  { type: "image", src: "assets/gallery/g57.jpg", size: "tall" },
-  { type: "image", src: "assets/gallery/g58.jpg", size: "" },
-  { type: "image", src: "assets/gallery/g59.jpg", size: "tall" },
-  { type: "video", src: "assets/gallery/v11.mp4", size: "tall" },
-  { type: "image", src: "assets/gallery/g60.jpg", size: "big" },
-  { type: "image", src: "assets/gallery/g61.jpg", size: "tall" },
-  { type: "image", src: "assets/gallery/g62.jpg", size: "" },
-  { type: "image", src: "assets/gallery/g63.jpg", size: "tall" },
-  { type: "image", src: "assets/gallery/g64.jpg", size: "wide" },
-  { type: "video", src: "assets/gallery/v12.mp4", size: "wide" },
-  { type: "image", src: "assets/gallery/g65.jpg", size: "wide" },
-  { type: "image", src: "assets/gallery/g66.jpg", size: "" },
-  { type: "image", src: "assets/gallery/g67.jpg", size: "tall" },
-  { type: "image", src: "assets/gallery/g68.jpg", size: "" },
-  { type: "image", src: "assets/gallery/g69.jpg", size: "tall" },
-  { type: "image", src: "assets/gallery/g70.jpg", size: "big" },
-  { type: "image", src: "assets/gallery/g71.jpg", size: "wide" },
-  { type: "image", src: "assets/gallery/g72.jpg", size: "" },
-  { type: "image", src: "assets/gallery/g73.jpg", size: "tall" },
-  { type: "image", src: "assets/gallery/g74.jpg", size: "" },
-  { type: "image", src: "assets/gallery/g75.jpg", size: "tall" },
-  { type: "image", src: "assets/gallery/g76.jpg", size: "" },
-  { type: "image", src: "assets/gallery/g77.jpg", size: "tall" },
-  { type: "image", src: "assets/gallery/g78.jpg", size: "" },
-  { type: "image", src: "assets/gallery/g79.jpg", size: "tall" },
-  { type: "image", src: "assets/gallery/g80.jpg", size: "big" },
-  { type: "image", src: "assets/gallery/g81.jpg", size: "tall" },
-  { type: "image", src: "assets/gallery/g82.jpg", size: "" },
-  { type: "image", src: "assets/gallery/g83.jpg", size: "tall" },
-  { type: "image", src: "assets/gallery/g_bar.jpg", size: "" },
-];
-
 /* ===================================================================== */
 
 function spotifyEmbed(url) {
@@ -652,33 +535,8 @@ document.getElementById("playlist-grid").innerHTML = PLAYLISTS.map(function (p) 
   if (!left) document.getElementById("events-empty").hidden = false;
 })();
 
-/* gallery */
-var GALLERY_INITIAL = 16;
-(function () {
-  var m = document.getElementById("mosaic");
-  m.innerHTML = GALLERY.map(function (g, i) {
-    var cls = "tile" + (g.size ? " " + g.size : "") + (i >= GALLERY_INITIAL ? " tile-hidden" : "");
-    if (g.type === "video") {
-      return '<div class="' + cls + '"><video src="' + g.src + '" poster="' + g.src.replace(/\.mp4$/, ".jpg") + '" ' + (i < GALLERY_INITIAL ? "autoplay " : "") + 'muted loop playsinline preload="metadata"></video></div>';
-    }
-    return '<div class="' + cls + '"><img src="' + g.src + '" alt="" loading="lazy"></div>';
-  }).join("");
-  var hidden = GALLERY.length - GALLERY_INITIAL;
-  if (hidden > 0) {
-    var wrap = document.getElementById("gallery-more-wrap");
-    wrap.innerHTML = '<button type="button" class="btn ghost" id="gallery-more-btn">See all (' + hidden + ')</button>';
-    document.getElementById("gallery-more-btn").addEventListener("click", function () {
-      m.querySelectorAll(".tile-hidden").forEach(function (t) {
-        t.classList.remove("tile-hidden");
-        var v = t.querySelector("video"); if (v) { v.autoplay = true; v.play().catch(function () {}); }
-      });
-      wrap.innerHTML = "";
-    });
-  }
-})();
-
-/* panels: nightofplay.com/#story, #events, #gallery, #playlist */
-var panels = { story: "p-story", events: "p-events", "private-hire": "p-hire", gallery: "p-gallery", playlist: "p-playlist" };
+/* panels: nightofplay.com/#story, #events, #private-hire, #playlist */
+var panels = { story: "p-story", events: "p-events", "private-hire": "p-hire", playlist: "p-playlist" };
 function show() {
   var k = location.hash.slice(1);
   Object.keys(panels).forEach(function (key) {
