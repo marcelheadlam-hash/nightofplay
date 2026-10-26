@@ -87,7 +87,6 @@
   @media (min-aspect-ratio: 138/100) {
     .bg { -webkit-mask-image: linear-gradient(to right, transparent, #000 9%, #000 91%, transparent); mask-image: linear-gradient(to right, transparent, #000 9%, #000 91%, transparent); }
   }
-  .scrim { position: fixed; inset: 0; z-index: -1; background: linear-gradient(to top, rgba(255,255,255,.85), rgba(255,255,255,0) 30%), radial-gradient(ellipse 46% 62% at 50% 42%, rgba(255,255,255,.62), rgba(255,255,255,.18) 100%); }
   .brand { display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; }
   .brand img { width: clamp(130px, 13vw, 180px); height: auto; filter: drop-shadow(0 0 12px rgba(255,255,255,.9)); }
   .tagline { font-family: var(--display); font-weight: 900; font-size: clamp(28px, 4.6vw, 58px); line-height: 1.1; letter-spacing: .01em; text-transform: uppercase; text-wrap: balance; max-width: 18ch; text-shadow: var(--halo), 0 0 30px rgba(255,255,255,.8); }
@@ -249,20 +248,17 @@
   .play-btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; line-height: 1; background: rgba(255,255,255,.7); backdrop-filter: blur(4px); }
   .play-btn svg { width: 14px; height: 14px; }
   /* Play mode: the PLAY button clears the home screen so the video plays on its own. A tap, click or key brings it back. */
-  .brand, nav.menu, .foot, .scrim { transition: opacity .7s ease, visibility .7s ease; }
+  /* The home screen is plain white. The video only appears, in full colour, after PLAY. */
+  .bg, .sound-btn { opacity: 0; visibility: hidden; transition: opacity .7s ease, visibility .7s ease; }
+  body.idle .bg, body.idle .sound-btn { opacity: 1; visibility: visible; }
+  .brand, nav.menu, .foot { transition: opacity .7s ease, visibility .7s ease; }
   body.idle .brand, body.idle nav.menu, body.idle .foot { opacity: 0; visibility: hidden; pointer-events: none; }
-  body.idle .scrim { opacity: .3; }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 </head>
 <body>
 
-<video class="bg" id="bgv" aria-hidden="true" autoplay muted loop playsinline preload="auto" poster="assets/nop-bg-poster.jpg"></video>
-<script>
-  /* Phones get the lighter 5.9MB cut; larger screens get the full-quality original. */
-  (function () { var v = document.getElementById("bgv"); v.src = window.matchMedia("(max-width: 768px)").matches ? "assets/nop-bg-mobile.mp4" : "assets/nop-bg.mp4"; var p = v.play && v.play(); if (p && p.catch) p.catch(function () {}); })();
-</script>
-<div class="scrim" aria-hidden="true"></div>
+<video class="bg" id="bgv" aria-hidden="true" muted loop playsinline preload="none"></video>
 
 <main class="home" id="home">
   <div class="brand">
@@ -693,13 +689,10 @@ function show() {
     if (key === k) p.scrollTop = 0;
   });
   document.body.style.overflow = panels[k] ? "hidden" : "";
-  // Opening a page stops the background video and its sound; closing it brings the video back, muted.
-  var v = document.getElementById("bgv"), sb = document.getElementById("soundBtn");
+  // Opening a page stops the video and its sound. The video only ever starts from PLAY.
   if (panels[k]) {
-    v.pause(); v.muted = true;
-    sb.classList.remove("is-unmuted"); sb.setAttribute("aria-label", "Unmute sound"); sb.title = "Unmute";
-  } else if (v.paused) {
-    var pp = v.play(); if (pp && pp.catch) pp.catch(function () {});
+    document.getElementById("bgv").pause();
+    document.body.classList.remove("idle");
   }
 }
 window.addEventListener("hashchange", show); show();
@@ -736,27 +729,13 @@ document.getElementById("reveal").addEventListener("click", function () {
 });
 document.getElementById("yr").textContent = new Date().getFullYear();
 
-/* idle mode: the words fade after 3s without mouse movement and come back the moment it moves.
-   PLAY carries on from where the video is, with sound, and clears the screen straight away. */
+/* play mode: PLAY hides the words and plays the video with sound, carrying on from where it stopped.
+   A tap, click or key press stops it and brings the plain home screen back. */
 (function () {
   var body = document.body, video = document.getElementById("bgv"),
       soundBtn = document.getElementById("soundBtn"), playBtn = document.getElementById("playBtn"),
-      swallow = false, swallowTimer = null, idleTimer = null, lastX = null, lastY = null,
-      IDLE_MS = 3000, hasMouse = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+      swallow = false, swallowTimer = null;
   function playing() { return body.classList.contains("idle"); }
-  function pageOpen() { return !!panels[location.hash.slice(1)]; }
-  function arm() {
-    clearTimeout(idleTimer);
-    if (!hasMouse) return;
-    idleTimer = setTimeout(function () { if (!pageOpen()) body.classList.add("idle"); }, IDLE_MS);
-  }
-  // Only real movement counts; browsers can fire mousemove when the page changes under a still cursor.
-  document.addEventListener("mousemove", function (e) {
-    if (e.screenX === lastX && e.screenY === lastY) return;
-    lastX = e.screenX; lastY = e.screenY;
-    wake(); arm();
-  }, { passive: true });
-  arm();
   function setSound(on) {
     video.muted = !on;
     soundBtn.classList.toggle("is-unmuted", on);
@@ -764,27 +743,29 @@ document.getElementById("yr").textContent = new Date().getFullYear();
     soundBtn.title = on ? "Mute" : "Unmute";
   }
   playBtn.addEventListener("click", function () {
-    clearTimeout(idleTimer);
+    // The video only downloads the first time someone presses PLAY. Phones get the lighter 5.9MB cut.
+    if (!video.getAttribute("src")) {
+      video.src = window.matchMedia("(max-width: 768px)").matches ? "assets/nop-bg-mobile.mp4" : "assets/nop-bg.mp4";
+    }
     setSound(true);
     var p = video.play();
     // If the browser refuses sound, keep the video playing muted rather than stopping it.
     if (p && p.catch) p.catch(function () { setSound(false); video.play().catch(function () {}); });
     body.classList.add("idle");
   });
-  function wake() { body.classList.remove("idle"); }
-  // A tap or click brings the screen back. That first tap only wakes it, so it can't hit a link that was invisible.
+  function stop() { video.pause(); body.classList.remove("idle"); }
+  // That first tap only stops the video, so it can't hit a link that was invisible.
   document.addEventListener("pointerdown", function (e) {
     if (!playing()) return;
     if (e.target.closest && e.target.closest("#soundBtn")) return;
     swallow = true; clearTimeout(swallowTimer);
     swallowTimer = setTimeout(function () { swallow = false; }, 800);
-    wake(); arm();
+    stop();
   }, true);
   document.addEventListener("click", function (e) {
     if (swallow) { swallow = false; e.preventDefault(); e.stopPropagation(); }
   }, true);
-  document.addEventListener("keydown", function () { if (playing()) wake(); arm(); }, true);
-  window.addEventListener("hashchange", function () { if (pageOpen()) wake(); arm(); });
+  document.addEventListener("keydown", function () { if (playing()) stop(); }, true);
 })();
 
 /* sound toggle */
