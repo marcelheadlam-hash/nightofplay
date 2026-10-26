@@ -592,7 +592,7 @@ document.getElementById("yr").textContent = new Date().getFullYear();
     soundBtn.title = on ? "Mute" : "Unmute";
   }
   playBtn.addEventListener("click", function () {
-    // The video only downloads the first time someone presses PLAY. Phones get the lighter 5.9MB cut.
+    // The video only downloads the first time someone presses PLAY. Phones get the lighter 4.9MB cut.
     if (!video.getAttribute("src")) {
       video.src = window.matchMedia("(max-width: 768px)").matches ? "assets/nop-bg-mobile.mp4" : "assets/nop-bg.mp4";
     }
