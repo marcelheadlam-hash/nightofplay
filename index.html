@@ -179,9 +179,6 @@
   .ev .cta { justify-self: start; align-self: end; margin-top: 8px; font-family: var(--display); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; border-bottom: 2px solid var(--fg); padding-bottom: 3px; }
 
 
-  /* Playlist */
-  .playlist-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 22px; }
-  .playlist-grid iframe { width: 100%; border: 0; border-radius: 12px; }
   .note { font-size: 16px; color: var(--muted); line-height: 1.6; }
   .note a { color: var(--fg); }
   /* Sound toggle */
@@ -272,7 +269,6 @@
     <a href="#how-it-works">How It Works</a>
     <a href="#events">Events</a>
     <a href="#private-hire">Private Hire</a>
-    <a href="#playlist">Playlist</a>
   </nav>
   <div class="foot">
     <div class="socials">
@@ -530,11 +526,6 @@
   <p class="note" id="events-empty" hidden>Next date coming soon. Follow <a href="https://www.instagram.com/nightofplay" target="_blank" rel="noopener">@nightofplay</a> to hear first.</p>
 </section>
 
-<!-- PLAYLIST -->
-<section class="panel" id="p-playlist" hidden aria-label="Playlist">
-  <div class="panel-head"><h2>Playlist</h2><a class="close" href="#" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></a></div>
-  <div class="playlist-grid" id="playlist-grid"></div>
-</section>
 
 <button class="sound-btn" id="soundBtn" type="button" aria-label="Unmute sound" title="Unmute">
   <svg class="icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><line x1="17" y1="9" x2="22" y2="14"/><line x1="22" y1="9" x2="17" y2="14"/></svg>
@@ -548,22 +539,7 @@
      data-ends="YYYY-MM-DD" hides a card automatically once that day has passed.
    ===================================================================== */
 
-// PLAYLISTS — normal Spotify share links.
-const PLAYLISTS = [
-  { url: "https://open.spotify.com/playlist/5gcFMmgPBzG1PVUISmmIqP" },  // R&B
-  { url: "https://open.spotify.com/playlist/7u3965CBX9qBQaEZ8FCw0M" },  // Old School Hip-Hop
-  { url: "https://open.spotify.com/playlist/4ADOQoov0ikPZSku4nYDmL" },  // Afrobeats
-];
-
 /* ===================================================================== */
-
-function spotifyEmbed(url) {
-  var id = (url.split("/playlist/")[1] || "").split("?")[0];
-  return "https://open.spotify.com/embed/playlist/" + id + "?utm_source=generator&theme=0";
-}
-document.getElementById("playlist-grid").innerHTML = PLAYLISTS.map(function (p) {
-  return '<iframe loading="lazy" height="352" title="Night of Play playlist" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" src="' + spotifyEmbed(p.url) + '"></iframe>';
-}).join("");
 
 /* events: hide past dates */
 (function () {
@@ -575,8 +551,8 @@ document.getElementById("playlist-grid").innerHTML = PLAYLISTS.map(function (p) 
   if (!left) document.getElementById("events-empty").hidden = false;
 })();
 
-/* panels: nightofplay.com/#story, #how-it-works, #events, #private-hire, #playlist */
-var panels = { story: "p-story", "how-it-works": "p-how", events: "p-events", "private-hire": "p-hire", playlist: "p-playlist" };
+/* panels: nightofplay.com/#story, #how-it-works, #events, #private-hire */
+var panels = { story: "p-story", "how-it-works": "p-how", events: "p-events", "private-hire": "p-hire" };
 function show() {
   var k = location.hash.slice(1);
   Object.keys(panels).forEach(function (key) {
