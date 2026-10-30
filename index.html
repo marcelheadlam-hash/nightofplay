@@ -85,7 +85,7 @@
   .brand img { width: clamp(130px, 13vw, 180px); height: auto; filter: drop-shadow(0 0 12px rgba(255,255,255,.9)); }
   .tagline { font-family: var(--display); font-weight: 900; font-size: clamp(28px, 4.6vw, 58px); line-height: 1.1; letter-spacing: .01em; text-transform: uppercase; text-wrap: balance; max-width: 18ch; text-shadow: var(--halo), 0 0 30px rgba(255,255,255,.8); }
   .strap { font-family: var(--display); font-weight: 700; font-size: clamp(13px, 1.3vw, 16px); letter-spacing: .24em; text-transform: uppercase; margin-bottom: -6px; text-shadow: var(--halo); }
-  .anyone { font-size: clamp(15px, 1.4vw, 17px); font-weight: 600; text-shadow: var(--halo); margin-top: -4px; }
+  .anyone { font-size: clamp(15px, 1.4vw, 17px); font-weight: 600; line-height: 1.5; text-wrap: balance; text-shadow: var(--halo); margin-block: 10px 14px; }
   .occasions { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 14px; }
   .occ { all: unset; box-sizing: border-box; cursor: pointer; display: grid; gap: 8px; align-content: start; padding: 22px; border-radius: 16px; border: 2px solid rgba(0,0,0,.22); background: rgba(0,0,0,.025); transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
   .occ:hover, .occ:focus-visible { transform: translateY(-3px); border-color: var(--fg); box-shadow: var(--glow); }
@@ -256,7 +256,7 @@
   <div class="brand">
     <a href="#" aria-label="Night of Play home"><img src="assets/nop-logo-640.png" alt="Night of Play" width="640" height="411"></a>
     <h1 class="tagline" id="tagline">A Live Gameshow Experience</h1>
-    <p class="anyone">You're not the audience. You're the contestant.<br>Anyone can play. No skill needed, no experience needed.</p>
+    <p class="anyone">Anyone can play. No skill needed, no experience needed.</p>
     <div class="hero-btns">
       <a class="btn" href="https://tickxts.com/events/bZ7JMmjQ/night-of-play-presents-the-show" target="_blank" rel="noopener">Get your spot · Fri 20 Nov</a>
       <button class="btn ghost play-btn" type="button" id="playBtn" aria-label="Play the video with sound"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>Play</button>
