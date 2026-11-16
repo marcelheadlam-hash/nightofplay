@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Night of Play · A Live Gameshow Experience</title>
-<meta name="description" content="Night of Play is a live gameshow experience in London. Lights, buzzers and confetti, a host on the mic and dozens of games. You're not the audience. You're the contestant.">
+<title>Night of Play · RnB Games Nights for London Singles</title>
+<meta name="description" content="RnB, games and a room full of singles. Night of Play is a games night for London singles aged 21 to 40, with dedicated hosts and RnB all night. No speed dating. No pressure. Just games.">
 <link rel="canonical" href="https://www.nightofplay.com/">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -12,15 +12,15 @@
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Night of Play">
-<meta property="og:title" content="Night of Play · A Live Gameshow Experience">
-<meta property="og:description" content="A live gameshow experience in London. You're not the audience. You're the contestant.">
+<meta property="og:title" content="Night of Play · RnB Games Nights for London Singles">
+<meta property="og:description" content="RnB, games and a room full of singles. No speed dating. No pressure. Just games.">
 <meta property="og:url" content="https://www.nightofplay.com/">
 <meta property="og:image" content="https://www.nightofplay.com/assets/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Night of Play · A Live Gameshow Experience">
-<meta name="twitter:description" content="A live gameshow experience in London. You're not the audience. You're the contestant.">
+<meta name="twitter:title" content="Night of Play · RnB Games Nights for London Singles">
+<meta name="twitter:description" content="RnB, games and a room full of singles. No speed dating. No pressure. Just games.">
 <meta name="twitter:image" content="https://www.nightofplay.com/assets/og-image.jpg">
 
 <script type="application/ld+json">
@@ -244,6 +244,52 @@
   .bg-fill { position: fixed; inset: 0; z-index: -3; background: #000; }
   .brand, nav.menu, .foot { transition: opacity .7s ease, visibility .7s ease; }
   body.idle .brand, body.idle nav.menu, body.idle .foot { opacity: 0; visibility: hidden; pointer-events: none; }
+  .isnt { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 26px; }
+  .isnt div { display: grid; gap: 12px; align-content: start; padding-top: 18px; border-top: 2px solid var(--fg); }
+  .isnt div.no { border-top-color: var(--line); }
+  .isnt b { font-family: var(--display); font-weight: 900; font-size: clamp(20px, 2.2vw, 26px); text-transform: uppercase; }
+  .isnt ul { list-style: none; display: grid; gap: 10px; }
+  .isnt li { font-size: 17px; line-height: 1.5; padding-left: 26px; position: relative; }
+  .isnt li::before { content: "✓"; position: absolute; left: 0; font-weight: 700; color: var(--green); }
+  .isnt .no li { color: var(--muted); }
+  .isnt .no li::before { content: "✕"; color: var(--red); }
+  .canyou { list-style: none; display: grid; gap: 10px; margin-top: 18px; }
+  .canyou li { font-size: clamp(17px, 1.7vw, 20px); line-height: 1.5; padding-left: 22px; position: relative; }
+  .canyou li::before { content: ""; position: absolute; left: 0; top: .7em; width: 10px; height: 2px; background: var(--pink); }
+  .anyone .just { color: var(--pink); font-weight: 800; font-size: 1.25em; text-transform: uppercase; letter-spacing: .02em; white-space: nowrap; display: block; margin-top: 6px; }
+  .feature { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); max-width: 1000px; text-decoration: none; color: var(--fg); border: 2px solid var(--fg); border-radius: 22px; overflow: hidden; background: #fff; transition: transform .25s ease, box-shadow .25s ease; }
+  .feature:hover { transform: translateY(-4px); box-shadow: var(--glow); }
+  .feature.ev { padding: 0; gap: 0; grid-template-rows: none; background: #fff; border: 2px solid var(--fg); border-radius: 22px; }
+  .f-img { position: relative; min-height: 340px; background: #111; }
+  .f-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .f-date { position: absolute; top: 18px; left: 18px; display: grid; justify-items: center; background: var(--pink); color: #fff; border-radius: 14px; padding: 10px 16px; font-family: var(--display); font-weight: 700; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; line-height: 1.1; }
+  .f-date b { font-size: 40px; font-weight: 900; letter-spacing: 0; }
+  .f-date small { font-size: 11px; opacity: .9; }
+  .f-body { display: grid; gap: 14px; align-content: start; padding: clamp(24px, 3.4vw, 40px); }
+  .feature .kicker { font-family: var(--display); font-size: 12px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--pink); }
+  .f-title { font-family: var(--display); font-weight: 900; font-size: clamp(28px, 3.6vw, 44px); line-height: 1.05; text-transform: uppercase; }
+  .f-sub { font-size: 18px; color: var(--muted); margin-top: -4px; }
+  .f-meta { list-style: none; display: grid; gap: 8px; padding-block: 14px; border-block: 1px solid var(--line); }
+  .f-meta li { font-size: 16px; line-height: 1.4; display: flex; gap: 14px; }
+  .f-meta b { font-family: var(--display); font-weight: 700; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; min-width: 58px; padding-top: 3px; color: var(--muted); }
+  .f-can { font-size: 16px; line-height: 1.6; color: var(--muted); }
+  .f-can strong { color: var(--fg); }
+  .f-btn { justify-self: start; margin-top: 4px; }
+  @media (max-width: 720px) { .feature { grid-template-columns: 1fr; } .f-img { min-height: 260px; } }
+  .wl-head { font-family: var(--display); font-weight: 900; font-size: clamp(22px, 2.6vw, 30px); text-transform: uppercase; color: var(--fg); }
+  .waitlist { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 12px; align-items: end; max-width: 760px; margin-top: 16px; }
+  .waitlist label { display: grid; gap: 6px; font-size: 14px; font-weight: 600; color: var(--fg); }
+  .waitlist input { font: inherit; font-weight: 400; font-size: 16px; color: var(--fg); border: 1px solid rgba(0,0,0,.25); border-radius: 999px; padding: 14px 18px; background: #fff; width: 100%; }
+  .waitlist input:focus { outline: none; border-color: var(--pink); box-shadow: 0 0 0 3px rgba(212,17,159,.2); }
+  .waitlist .btn { color: #fff; }
+  .wl-small, .wl-msg { grid-column: 1 / -1; font-size: 13px; color: var(--muted); }
+  .wl-msg { font-size: 16px; color: var(--fg); }
+  .wl-or { margin-top: 22px; font-size: 14px; }
+  .step-art { display: grid; place-items: center; height: 150px; border-radius: 16px; background: #faf7fb; border: 1px solid var(--line); margin-bottom: 10px; }
+  #p-how .steps li { border-top: 0; padding-top: 0; }
+  #p-how .steps { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
+  .note-btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+  .note .btn { color: #fff; } .note .btn.ghost { color: var(--fg); }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 </head>
@@ -255,16 +301,16 @@
 <main class="home" id="home">
   <div class="brand">
     <a href="#" aria-label="Night of Play home"><img src="assets/nop-logo-640.png" alt="Night of Play" width="640" height="411"></a>
-    <h1 class="tagline" id="tagline">A Live Gameshow Experience</h1>
-    <p class="anyone">Anyone can play. No skill needed, no experience needed.</p>
+    <h1 class="tagline" id="tagline">RnB, games and a room full of singles.</h1>
+    <p class="anyone">No speed dating. No pressure. <span class="just">Just games.</span></p>
     <div class="hero-btns">
       <a class="btn" href="https://www.eventbrite.co.uk/e/the-lucky-egg-show-tickets-2003464480192" target="_blank" rel="noopener">Get your spot · Fri 20 Nov</a>
       <button class="btn ghost play-btn" type="button" id="playBtn" aria-label="Play the video with sound"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>Play</button>
     </div>
-    <p class="proof">Seen at <strong>The Crown Estate, the NHS &amp; many more</strong></p>
+    <p class="proof">Seen at <strong>The Crown Estate, the NHS, Lucky Egg &amp; many more</strong></p>
   </div>
   <nav class="menu" aria-label="Main">
-    <a href="#story">Our Story</a>
+    <a href="#story">Who We Are</a>
     <a href="#how-it-works">How It Works</a>
     <a href="#events">Events</a>
     <a href="#private-hire">Private Hire</a>
@@ -279,55 +325,77 @@
   </div>
 </main>
 
-<!-- OUR STORY -->
-<section class="panel" id="p-story" hidden aria-label="Our Story">
-  <div class="panel-head"><h2>Our Story</h2><a class="close" href="#" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></a></div>
+<!-- WHO WE ARE -->
+<section class="panel" id="p-story" hidden aria-label="Who We Are">
+  <div class="panel-head"><h2>Who We Are</h2><a class="close" href="#" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></a></div>
   <div class="story">
     <div class="section" style="gap:22px">
-      <p class="why">Everyone wants their moment. Most of us <em>never get one.</em></p>
+      <p class="why">We believe people connect best when they <em>stop trying so hard.</em></p>
       <div class="prose">
-        <p>Night of Play is where you get yours: lights up, buzzer in hand, the room on its feet.</p>
-        <p>Real buzzers. A host on the mic. A clock ticking down and your team counting on you. <strong>Then the lights, the confetti, and a room that's cheering for you.</strong></p>
+        <p>Somewhere along the way, meeting people turned into work. Profiles to perfect. Openers to rehearse. Swipes that go nowhere. First dates that feel like job interviews: you both know in five minutes it isn't going anywhere, then spend the rest of the evening politely pretending it might.</p>
+        <p>London has more ways to meet people than ever. So why does it feel so hard?</p>
+        <p>Think about the people you clicked with straight away. You weren't performing. You were laughing at the same thing, on the same side, caught up in the moment. Nobody was trying to impress anyone. <strong>That's when people are most themselves, and that's when the magic happens.</strong></p>
+        <p>That's the feeling we're chasing: the version of you that turns up when you forget to be nervous.</p>
+      </div>
+    </div>
+
+    <div class="section" style="gap:22px">
+      <p class="why">So we skip the small talk. <em>We put you on a team.</em></p>
+      <div class="prose">
+        <p>Our hosts run the room and the games break the ice. By the second round you're celebrating with someone you met ten minutes ago, and nobody had to think of an opening line. When the team games wrap up, grab a board game with someone new or head for the dancefloor.</p>
+        <p><strong>Night of Play is an RnB games night for London singles.</strong> Games first, then the DJ takes over.</p>
       </div>
     </div>
 
     <div class="section">
-      <div class="prose">
-        <p>It started at uni, as <strong>games nights among friends</strong>. Then companies started asking for it, and we took the show on the road for companies like <strong>The Crown Estate, the NHS &amp; many more</strong>, from corporate Christmas parties to members-only coworking events.</p>
-        <p>Different rooms, same thing every time: <strong>the quiet one takes the final buzzer and the room loses it.</strong> Every show, someone gets their moment. Now it's your turn.</p>
-      </div>
-    </div>
-
-    <div class="section">
-      <p class="hook">When did you last <em>play?</em></p>
-      <p class="hook-sub">Not scroll. Not watch. Play. If you had to think about it, it's been too long.</p>
-      <div class="reasons">
-        <div><b>It puts you in the show</b><span>Buzzers, a ticking clock and a whole room cheering you on. It's the feeling you've only ever watched on TV.</span></div>
-        <div><b>Everyone gets a shot</b><span>No specialists, no experts. The person next to you has the same chance as the loudest in the room.</span></div>
-      </div>
-      <div class="quiz">
-        <p class="q">What does the champion get?</p>
-        <button class="btn ghost" type="button" id="reveal">Reveal the answer</button>
-        <p class="a" id="answer" hidden><strong>Champagne, sparklers, their own walk-up music</strong> and the whole room on its feet.</p>
+      <p class="hook">What it is. <em>What it isn't.</em></p>
+      <div class="isnt" style="margin-top:clamp(24px,3vw,36px)">
+        <div><b>It is</b><ul>
+          <li>Easy to come solo</li>
+          <li>Teams at the door, so you meet new people</li>
+          <li>RnB all night once the games are done</li>
+        </ul></div>
+        <div class="no"><b>It isn't</b><ul>
+          <li>Swiping</li>
+          <li>Forced one-on-one chats</li>
+          <li>Only for extroverts</li>
+          <li>A night you watch from the side</li>
+        </ul></div>
       </div>
     </div>
 
     <div class="section">
       <ul class="beliefs">
-        <li><b>Come solo or as a crew</b><span>Bring your people and play as one team, or come on your own and we'll put you on one. Either way, you're playing.</span></li>
+        <li><b>Come solo or bring your crew</b><span>Come on your own or bring your single friends. You'll be put on a team at the door, so you'll leave with new friends either way.</span></li>
         <li><b>We design for everyone</b><span>London is one of the most diverse cities in the world. Our games give everyone in the room the same chance of winning, whoever you are and wherever you're from.</span></li>
         <li><b>Nobody watches from the side</b><span>If you're in the room, you're in the game, and your moment could come in any round.</span></li>
-        <li><b>Can I come on my own?</b><span>Yes. We'll put you on a team the moment you arrive.</span></li>
+        <li><b>Is it speed dating?</b><span>No. No rotations, no timed chats, no pressure. You play on a team and the mingling happens on its own.</span></li>
         <li><b>Do I have to go up on stage?</b><span>Only if you want to. Everyone else plays from the crowd with their team.</span></li>
-        <li><b>I'm not good at games</b><span>You don't need to be. Our games are inspired by TV shows you already know, and everyone has the same chance of winning.</span></li>
-        <li><b>What's the vibe?</b><span>A live gameshow first, a night out after. It ends with an afterparty and a DJ.</span></li>
+        <li><b>I'm not good at games</b><span>You don't need to be. No skill needed, just nerve.</span></li>
+        <li><b>What's the vibe?</b><span>Games first. Once the champions are crowned, the DJ takes over and the dancefloor opens. RnB all night.</span></li>
       </ul>
+    </div>
+
+    <div class="section">
+      <div class="photos">
+        <div><img loading="lazy" src="assets/gallery/g38.jpg" alt="Two guests posing together"></div>
+        <div><img loading="lazy" src="assets/gallery/g04.jpg" alt="A guest laughing at the buzzer table"></div>
+        <div><img loading="lazy" src="assets/gallery/g67.jpg" alt="A guest posing by the photo wall"></div>
+        <div><img loading="lazy" src="assets/gallery/g08.jpg" alt="A crowd watching a game of giant Jenga"></div>
+        <div><img loading="lazy" src="assets/gallery/g52.jpg" alt="Two guests smiling together at the bar"></div>
+        <div><img loading="lazy" src="assets/gallery/g78.jpg" alt="A man and a woman posing with drinks"></div>
+        <div><img loading="lazy" src="assets/gallery/g45.jpg" alt="Guests dancing"></div>
+        <div><img loading="lazy" src="assets/gallery/g40.jpg" alt="Guests playing giant Jenga"></div>
+        <div><img loading="lazy" src="assets/gallery/g06.jpg" alt="A guest pulling a block from giant Jenga"></div>
+        <div><img loading="lazy" src="assets/gallery/g19.jpg" alt="Guests cheering at the game buzzers"></div>
+        <div><img loading="lazy" src="assets/gallery/g79.jpg" alt="The DJ on the decks"></div>
+      </div>
     </div>
 
     <div class="section" id="app">
       <p class="label">What's next</p>
       <div class="app-card">
-        <span class="app-pill">Our app · Coming soon</span>
+        <span class="app-pill">For The Players · Coming soon</span>
         <p class="app-name">Your moment doesn't end when the night does.</p>
         <p class="app-sub">Your photos, your scores, your team, and the cheapest tickets before anyone else. All in your pocket.</p>
       </div>
@@ -335,9 +403,8 @@
 
     <div class="section" style="gap:18px">
       <div class="closing">
-        <p>Your moment's waiting.</p>
+        <p>Come for the games. Stay for the people.</p>
         <span class="btns"><a class="btn" href="#events">Get your spot</a></span>
-        <span class="urgency">Prices go up as each ticket release sells out. The earliest tickets are the cheapest.</span>
       </div>
     </div>
   </div>
@@ -348,38 +415,50 @@
   <div class="panel-head"><h2>How It Works</h2><a class="close" href="#" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></a></div>
   <div class="story">
     <div class="section" style="gap:22px">
-      <p class="why">Lights. Buzzers. <em>Confetti.</em></p>
+      <p class="why">One night. Four colours. <em>A room full of new people.</em></p>
       <div class="prose">
-        <p>Night of Play is a live gameshow experience. A host on the mic, real gameshow buzzers, the lights up and the whole room on teams. <strong>You're not the audience. You're the contestant.</strong></p>
-        <p><strong>Anyone can play.</strong> No skill needed, no experience needed. Every game is simple enough to pick up in seconds.</p>
+        <p>Every Night of Play follows the same shape: arrive as strangers, play as a team, leave with new people in your phone.</p>
+        <p>The games change every time. <strong>The feeling doesn't.</strong></p>
       </div>
     </div>
 
     <div class="section">
       <ol class="steps">
-        <li><span class="n">01</span><b>Get your team at the door</b><span>Everyone gets a team when they arrive. Come solo or bring friends.</span></li>
-        <li><span class="n">02</span><b>Rules hit the screen</b><span>Every round opens with the rules on the big screen, so you're playing within seconds.</span></li>
-        <li><span class="n">03</span><b>Every round scores</b><span>1st place takes 10 points, 2nd takes 8, 3rd takes 5 and 4th takes 3. Nobody's out of it until the last game.</span></li>
-        <li><span class="n">04</span><b>Top of the table wins</b><span>The points are counted, the winners are crowned, and the confetti comes down.</span></li>
+        <li><div class="step-art"><svg viewBox="0 0 120 120" width="104" height="104" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><circle cx="44" cy="46" r="20" fill="none" stroke="#e02a2a" stroke-width="9"/><circle cx="76" cy="46" r="20" fill="none" stroke="#4d5cff" stroke-width="9"/><circle cx="44" cy="76" r="20" fill="none" stroke="#16a653" stroke-width="9"/><circle cx="76" cy="76" r="20" fill="none" stroke="#f2b705" stroke-width="9"/></svg></div><span class="n">01</span><b>Get your colour</b><span>Red, Blue, Green or Yellow, handed out at the door.</span></li>
+        <li><div class="step-art"><svg viewBox="0 0 120 120" width="104" height="104" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M24 42l-9-6M22 60H11M24 78l-9 6M96 42l9-6M98 60h11M96 78l9 6" stroke="#d4119f" stroke-width="4" stroke-linecap="round" fill="none"/><rect x="38" y="14" width="44" height="90" rx="10" fill="#ffffff" stroke="#0a0a0c" stroke-width="4"/><rect x="53" y="21" width="14" height="3" rx="1.5" fill="#0a0a0c"/><circle cx="60" cy="62" r="15" fill="#d4119f" stroke="#0a0a0c" stroke-width="3"/><circle cx="55" cy="57" r="4" fill="#ffffff" opacity=".6"/></svg></div><span class="n">02</span><b>Everyone plays from the start</b><span>The opening round is played on your phone, all at once.</span></li>
+        <li><div class="step-art"><svg viewBox="0 0 120 120" width="104" height="104" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><circle cx="18" cy="26" r="4.5" fill="#e02a2a"/><circle cx="30" cy="26" r="4.5" fill="#4d5cff"/><circle cx="42" cy="26" r="4.5" fill="#16a653"/><circle cx="54" cy="26" r="4.5" fill="#f2b705"/><circle cx="66" cy="26" r="4.5" fill="#e02a2a"/><circle cx="78" cy="26" r="4.5" fill="#4d5cff"/><circle cx="90" cy="26" r="4.5" fill="#16a653"/><circle cx="102" cy="26" r="4.5" fill="#f2b705"/><circle cx="33" cy="52" r="6.5" fill="#e02a2a"/><circle cx="51" cy="52" r="6.5" fill="#4d5cff"/><circle cx="69" cy="52" r="6.5" fill="#16a653"/><circle cx="87" cy="52" r="6.5" fill="#f2b705"/><circle cx="48" cy="77" r="8" fill="#4d5cff"/><circle cx="72" cy="77" r="8" fill="#f2b705"/><circle cx="60" cy="102" r="11" fill="#d4119f" stroke="#0a0a0c" stroke-width="3"/><path d="M52 36l8 6 8-6M52 63l8 5 8-5M54 88l6 4 6-4" fill="none" stroke="#0a0a0c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity=".35"/></svg></div><span class="n">03</span><b>The room gets louder</b><span>Rounds get tougher and the field gets smaller.</span></li>
+        <li><div class="step-art"><svg viewBox="0 0 120 120" width="104" height="104" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><rect x="14" y="20" width="9" height="4" rx="1" fill="#e02a2a" transform="rotate(30 18 22)"/><rect x="96" y="16" width="9" height="4" rx="1" fill="#4d5cff" transform="rotate(-25 100 18)"/><rect x="100" y="58" width="9" height="4" rx="1" fill="#16a653" transform="rotate(50 104 60)"/><rect x="10" y="62" width="9" height="4" rx="1" fill="#d4119f" transform="rotate(-40 14 64)"/><circle cx="28" cy="40" r="3" fill="#f2b705"/><circle cx="94" cy="38" r="3" fill="#d4119f"/><circle cx="104" cy="88" r="3" fill="#e02a2a"/><circle cx="16" cy="92" r="3" fill="#4d5cff"/><path d="M41 30H31a11 11 0 0 0 11 17M79 30h10a11 11 0 0 1-11 17" fill="none" stroke="#0a0a0c" stroke-width="4" stroke-linecap="round"/><path d="M40 22h40v22a20 20 0 0 1-40 0z" fill="#f2b705" stroke="#0a0a0c" stroke-width="4" stroke-linejoin="round"/><path d="M60 64v14" stroke="#0a0a0c" stroke-width="5"/><rect x="42" y="78" width="36" height="12" rx="3" fill="#0a0a0c"/><path d="M60 30l3 6 6 1-4.5 4 1 6-5.5-3-5.5 3 1-6-4.5-4 6-1z" fill="#ffffff"/></svg></div><span class="n">04</span><b>A champion is crowned</b><span>One winner takes it, and their whole colour celebrates with them.</span></li>
+        <li><div class="step-art"><svg viewBox="0 0 120 120" width="104" height="104" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><circle cx="46" cy="68" r="32" fill="#0a0a0c"/><circle cx="46" cy="68" r="24" fill="none" stroke="#3a3a40" stroke-width="2"/><circle cx="46" cy="68" r="17" fill="none" stroke="#3a3a40" stroke-width="2"/><circle cx="46" cy="68" r="9" fill="#d4119f"/><circle cx="46" cy="68" r="2.5" fill="#ffffff"/><g transform="rotate(14 88 38)"><rect x="72" y="22" width="32" height="32" rx="7" fill="#ffffff" stroke="#0a0a0c" stroke-width="4"/><circle cx="80" cy="30" r="3" fill="#0a0a0c"/><circle cx="88" cy="38" r="3" fill="#0a0a0c"/><circle cx="96" cy="46" r="3" fill="#0a0a0c"/></g><path d="M92 76v22a6 6 0 1 1-4-5.6V72l14-4v6z" fill="#d4119f"/></svg></div><span class="n">05</span><b>Then the night opens up</b><span>Board games come out, the DJ takes over and the RnB runs till close.</span></li>
       </ol>
     </div>
 
     <div class="section">
-      <p class="hook">Dozens of <em>games.</em></p>
-      <p class="hook-sub">Speed rounds, buzzer battles, nerve tests and crowd votes. Dozens of games built to pit team against team, and player against player.</p>
+      <p class="hook">Different games. <em>Same feeling.</em></p>
+      <p class="hook-sub">Every game we make follows the same rules.</p>
+      <ul class="beliefs" style="margin-top:clamp(20px,3vw,32px)">
+        <li><b>Anyone can win on their day</b><span>No trivia, no specialist knowledge. Simple tasks, a ticking clock and a bit of nerve.</span></li>
+        <li><b>Nerve beats knowledge</b><span>The hard part isn't knowing the answer. It's stepping up in front of the room with the timer running.</span></li>
+        <li><b>You never play alone</b><span>Every game is built on shared tasks. Your team works together and cheers each other on.</span></li>
+        <li><b>Games reveal people</b><span>Who helps, who hypes, who holds the door. You'll find out whether chivalry is truly dead in under a minute.</span></li>
+        <li><b>Quiet is welcome</b><span>Nobody's forced on stage. Play the whole night from the crowd with your team, and step up only when you're ready.</span></li>
+        <li><b>Never at anyone's expense</b><span>No drinking games, no humiliation, no trivia only clever people can win, and nothing too sexual.</span></li>
+      </ul>
+      <p class="why" style="margin-top:clamp(28px,4vw,44px)">Our favourite players never come back. <em>They met their person.</em></p>
     </div>
 
     <div class="section">
       <p class="label">Common questions</p>
       <ul class="beliefs">
-        <li><b>Is there an age limit?</b><span>Yes. Night of Play is 18+.</span></li>
-        <li><b>Can I play with my friends?</b><span>Yes. Play together as one team, or come solo and we'll put you on one.</span></li>
+        <li><b>Who's it for?</b><span>Singles aged 21 to 40 from all over London. We keep the numbers balanced.</span></li>
+        <li><b>Is there an age limit?</b><span>Yes. Night of Play is 21+.</span></li>
+        <li><b>Can I bring friends?</b><span>Yes, bring your single friends. You'll each be put on a team at the door.</span></li>
+        <li><b>Is there a dress code?</b><span>Dress to impress.</span></li>
       </ul>
     </div>
 
     <div class="section" style="gap:18px">
       <div class="closing">
-        <p>Come solo or bring the crew. Everyone's a contestant.</p>
+        <p>Come solo or bring your crew. Everyone plays.</p>
         <span class="btns"><a class="btn" href="#events">Get your spot on a team</a></span>
       </div>
     </div>
@@ -397,7 +476,7 @@
         <p>Most gatherings go the same way: a room, a few drinks, and everyone drifting back to the people they already know. Give people something to compete over and that changes in minutes. <strong>Competition is the one language every room speaks.</strong></p>
         <p>We bring the Night of Play show to your event: work socials and Christmas parties, birthdays, members’ evenings, weddings, fundraisers and community nights. A professional host, all the kit and games everyone already knows how to play. <strong>In person, online or hybrid, for 20 to 300 guests.</strong></p>
       </div>
-      <div class="clients" aria-label="Organisations we've hosted for"><span>The Crown Estate</span><span>NHS</span><span>MYO Piccadilly</span><span>University of Essex</span><span>Arkhiventeros</span><span class="more">&amp; many more</span></div>
+      <div class="clients" aria-label="Organisations we've hosted for"><span>The Crown Estate</span><span>NHS</span><span>MYO Piccadilly</span><span>University of Essex</span><span>Arkhiventeros</span><span>Lucky Egg</span><span class="more">&amp; many more</span></div>
       <span class="btns"><button class="btn" type="button" data-scroll="hire-enquire">Get a proposal</button><a class="btn ghost" href="tel:+447508081454">Call 07508 081454</a></span>
     </div>
 
@@ -451,7 +530,6 @@
         <li><b>Smaller rooms</b><span>Real gameshow buzzers, the kind you’ve seen on TV. They make a room sound like a studio.</span></li>
         <li><b>Larger rooms</b><span>Everyone’s phone becomes the buzzer. Nothing to download, and up to 300 devices at once.</span></li>
         <li><b>Online or hybrid</b><span>Remote players buzz, score and win on exactly the same terms as the people in the room.</span></li>
-        <li><b>Giving back</b><span>Our 2025 Movember night raised over £3,000 for men’s health. Running an event for a cause? We’d love to help.</span></li>
       </ul>
     </div>
 
@@ -496,23 +574,36 @@
 
 <section class="panel" id="p-events" hidden aria-label="Events">
   <div class="panel-head"><h2>Events</h2><a class="close" href="#" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></a></div>
-  <div class="events">
-    <a class="ev" data-ends="2026-10-24" href="https://www.eventbrite.co.uk/e/afrosocial-saturday-games-night-tickets-2003010455191" target="_blank" rel="noopener">
-      <span class="kicker">With AfroSocial</span>
-      <span class="t">AfroSocial Games Night</span>
-      <span class="m">Sat 24 October 2026 · 6–11pm<br>Market Place, St Paul's</span>
-      <span class="urgency">Hosted by Night of Play</span>
-      <span class="cta">Get tickets</span>
-    </a>
-    <a class="ev" data-ends="2026-11-20" href="https://www.eventbrite.co.uk/e/the-lucky-egg-show-tickets-2003464480192" target="_blank" rel="noopener">
-      <span class="kicker">A Live Gameshow Experience</span>
-      <span class="t">Night of Play presents: The Show</span>
-      <span class="m">Fri 20 November 2026 · 7pm–late<br>Alaska, Waterloo</span>
-      <span class="urgency">Prices go up as each release sells out</span>
-      <span class="cta">Get tickets</span>
-    </a>
+  <a class="feature ev" data-ends="2026-11-20" href="https://www.eventbrite.co.uk/e/the-lucky-egg-show-tickets-2003464480192" target="_blank" rel="noopener">
+    <div class="f-img"><img src="assets/gallery/g19.jpg" alt="Guests cheering at the game buzzers"><span class="f-date"><b>20</b>Nov<small>Fri</small></span></div>
+    <div class="f-body">
+      <span class="kicker">Night of Play × Lucky Egg · <span id="countdown">Next up</span></span>
+      <span class="f-title">The Lucky Egg Show</span>
+      <span class="f-sub">A premium games night &amp; afterparty</span>
+      <ul class="f-meta">
+        <li><b>When</b>Fri 20 Nov · 7pm till late</li>
+        <li><b>Where</b>Alaska, Waterloo</li>
+        <li><b>Who</b>Singles, 21+ · Dress to impress</li>
+      </ul>
+      <p class="f-can">Guess the song from the words you think you hear. Read lips before the clock runs out. Keep a straight face while the room tries to crack you. <strong>Then the DJ takes over.</strong></p>
+      <span class="btn f-btn">Get your spot</span>
+    </div>
+  </a>
+  <div class="note" id="events-empty" style="margin-top:clamp(28px,4vw,44px)">
+    <p class="wl-head">Next date coming soon.</p>
+    <p>Join the list and you'll hear first, with first dibs on the cheapest tickets.</p>
+    <form class="waitlist" id="waitForm" action="https://formspree.io/f/meepbzdr" method="POST">
+      <input type="hidden" name="_subject" value="Waitlist sign-up (nightofplay.com)">
+      <input type="hidden" name="source" value="nightofplay.com/#events">
+      <label><span>First name</span><input name="name" autocomplete="given-name" required></label>
+      <label><span>Email</span><input type="email" name="email" autocomplete="email" required></label>
+      <button class="btn" type="submit">Join the list</button>
+      <p class="wl-small">Only Night of Play dates. Unsubscribe any time.</p>
+      <p class="wl-msg" id="waitMsg" role="status" hidden></p>
+    </form>
+    <p class="wl-or">Or follow us:</p>
+    <div class="note-btns"><a class="btn" href="https://www.eventbrite.co.uk/o/night-of-play-98225582481" target="_blank" rel="noopener">Follow on Eventbrite</a><a class="btn ghost" href="https://www.instagram.com/nightofplay" target="_blank" rel="noopener">@nightofplay</a></div>
   </div>
-  <p class="note" id="events-empty" hidden>Next date coming soon. Follow <a href="https://www.instagram.com/nightofplay" target="_blank" rel="noopener">@nightofplay</a> to hear first.</p>
 </section>
 
 
@@ -538,6 +629,11 @@
     if (new Date(c.dataset.ends + "T23:59:59") < today) c.hidden = true; else left++;
   });
   if (!left) document.getElementById("events-empty").hidden = false;
+  var cd = document.getElementById("countdown");
+  if (cd) {
+    var days = Math.round((new Date("2026-11-20T00:00:00") - today) / 864e5);
+    cd.textContent = days > 1 ? days + " days to go" : days === 1 ? "Tomorrow" : "Tonight";
+  }
 })();
 
 /* panels: nightofplay.com/#story, #how-it-works, #events, #private-hire */
@@ -592,9 +688,25 @@ document.querySelectorAll("[data-occasion]").forEach(function (b) {
   });
 })();
 
-document.getElementById("reveal").addEventListener("click", function () {
-  document.getElementById("answer").hidden = false; this.hidden = true;
-});
+(function () {
+  var f = document.getElementById("waitForm"), msg = document.getElementById("waitMsg");
+  if (!f || !window.fetch) return;
+  f.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var btn = f.querySelector("[type=submit]"); btn.disabled = true; btn.textContent = "Joining…";
+    fetch(f.action, { method: "POST", body: new FormData(f), headers: { Accept: "application/json" } })
+      .then(function (r) {
+        if (!r.ok) throw new Error();
+        f.querySelectorAll("label, button, .wl-small").forEach(function (el) { el.hidden = true; });
+        msg.textContent = "You're on the list. We'll email you the moment the next date drops.";
+      })
+      .catch(function () {
+        msg.textContent = "That didn't go through. Please try again, or email info@nightofplay.com.";
+        btn.disabled = false; btn.textContent = "Join the list";
+      })
+      .then(function () { msg.hidden = false; });
+  });
+})();
 document.getElementById("yr").textContent = new Date().getFullYear();
 
 /* play mode: PLAY hides the words and plays the video with sound, carrying on from where it stopped.
