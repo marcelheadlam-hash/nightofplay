@@ -303,7 +303,7 @@
     <a href="#" aria-label="Night of Play home"><img src="assets/nop-logo-640.png" alt="Night of Play" width="640" height="411"></a>
     <h1 class="tagline" id="tagline">Games, a DJ and a room full of singles.</h1>
     <div class="hero-btns">
-      <a class="btn" href="https://www.eventbrite.co.uk/e/the-lucky-egg-show-tickets-2003464480192" target="_blank" rel="noopener">Get your spot · Fri 20 Nov</a>
+      <a class="btn" href="#events">Hear about the next one first</a>
       <button class="btn ghost play-btn" type="button" id="playBtn" aria-label="Play the video with sound"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>Play</button>
     </div>
     <p class="proof">Seen at <strong>The Crown Estate, the NHS, Lucky Egg &amp; many more</strong></p>
@@ -375,7 +375,7 @@
     <div class="section" style="gap:18px">
       <div class="closing">
         <p>Come for the games. Stay for the people.</p>
-        <span class="btns"><a class="btn" href="#events">Get your spot</a></span>
+        <span class="btns"><a class="btn" href="#events">Join the list</a></span>
       </div>
     </div>
   </div>
@@ -429,7 +429,7 @@
     <div class="section" style="gap:18px">
       <div class="closing">
         <p>Your colour's waiting.</p>
-        <span class="btns"><a class="btn" href="#events">Get your spot</a></span>
+        <span class="btns"><a class="btn" href="#events">Join the list</a></span>
       </div>
     </div>
   </div>
@@ -544,30 +544,15 @@
 
 <section class="panel" id="p-events" hidden aria-label="Events">
   <div class="panel-head"><h2>Events</h2><a class="close" href="#" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></a></div>
-  <a class="feature ev" data-ends="2026-11-20" href="https://www.eventbrite.co.uk/e/the-lucky-egg-show-tickets-2003464480192" target="_blank" rel="noopener">
-    <div class="f-img"><img src="assets/gallery/g02.jpg" alt="Gameshow buzzers set up on a table, ready to play"><span class="f-date"><b>20</b>Nov<small>Fri</small></span></div>
-    <div class="f-body">
-      <span class="kicker">Night of Play × Lucky Egg · <span id="countdown">Next up</span></span>
-      <span class="f-title">The Lucky Egg Show</span>
-      <span class="f-sub">A premium games night &amp; afterparty</span>
-      <ul class="f-meta">
-        <li><b>When</b>Fri 20 Nov · 7pm till late</li>
-        <li><b>Where</b>Alaska, Waterloo</li>
-        <li><b>Who</b>Singles, 21+ · Dress to impress</li>
-      </ul>
-      <p class="f-can">Guess the song from the words you think you hear. Read lips before the clock runs out. Keep a straight face while the room tries to crack you. <strong>Then the DJ takes over.</strong></p>
-      <span class="btn f-btn">Get your spot</span>
-    </div>
-  </a>
-  <div class="note" id="events-empty" style="margin-top:clamp(28px,4vw,44px)">
-    <p class="wl-head">Next date coming soon.</p>
-    <p>Join the list to hear first and get first dibs on the cheapest tickets.</p>
+  <div class="note" id="events-empty">
+    <p class="wl-head">Be the first to hear about the next one.</p>
+    <p>Sign up and we'll email you before tickets go on sale, with first dibs on the cheapest ones.</p>
     <form class="waitlist" id="waitForm" action="https://formspree.io/f/meepbzdr" method="POST">
       <input type="hidden" name="_subject" value="Waitlist sign-up (nightofplay.com)">
       <input type="hidden" name="source" value="nightofplay.com/#events">
       <label><span>First name</span><input name="name" autocomplete="given-name" required></label>
       <label><span>Email</span><input type="email" name="email" autocomplete="email" required></label>
-      <button class="btn" type="submit">Join the list</button>
+      <button class="btn" type="submit">Sign me up</button>
       <p class="wl-small">Only Night of Play dates. Unsubscribe any time.</p>
       <p class="wl-msg" id="waitMsg" role="status" hidden></p>
     </form>
@@ -599,11 +584,6 @@
     if (new Date(c.dataset.ends + "T23:59:59") < today) c.hidden = true; else left++;
   });
   if (!left) document.getElementById("events-empty").hidden = false;
-  var cd = document.getElementById("countdown");
-  if (cd) {
-    var days = Math.round((new Date("2026-11-20T00:00:00") - today) / 864e5);
-    cd.textContent = days > 1 ? days + " days to go" : days === 1 ? "Tomorrow" : "Tonight";
-  }
 })();
 
 /* panels: nightofplay.com/#story, #how-it-works, #events, #private-hire */
